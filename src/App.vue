@@ -212,8 +212,8 @@
       div.row
         width: 258px
         img
-          width: 64px
-          height: 64px
+          width: 4px
+          height: 4px
           border: 0
 
   //div[role="banner"] > main.offset
