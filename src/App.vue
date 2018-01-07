@@ -44,17 +44,17 @@
         <div class="contacts">
           <p class="row justify-content-center">Контактный телефон: +38095-079-33-33</p>
           <p class="row justify-content-center">Электронный адрес: test@gmail.com</p>
-          <div class="row justify-content-center">
-            <a href="#">
-              <img src="./assets/social-vk.png" alt="VK">
-            </a>
-            <a href="#">
-              <img src="./assets/social-instagram.png" alt="Instagram">
-            </a>
-            <a href="#">
-              <img src="./assets/social-facebook.png" alt="Facebook">
-            </a>
-          </div>
+        </div>
+        <div class="row justify-content-center">
+          <a href="#">
+            <img src="./assets/social-vk.png" alt="VK">
+          </a>
+          <a href="#">
+            <img src="./assets/social-instagram.png" alt="Instagram">
+          </a>
+          <a href="#">
+            <img src="./assets/social-facebook.png" alt="Facebook">
+          </a>
         </div>
       </footer>
     </div>
