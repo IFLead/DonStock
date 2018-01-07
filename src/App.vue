@@ -43,7 +43,8 @@
         <div class="contacts">
           <p class="row justify-content-center">Контактный телефон: +38095-079-33-33</p>
           <p class="row justify-content-center">Электронный адрес: virvira@gmail.com</p>
-        </div>
+
+          </div>
         <div class="row justify-content-center">
           <a href="#">
             <img src="./assets/social-vk.png" alt="VK">
@@ -55,6 +56,7 @@
             <img src="./assets/social-facebook.png" alt="Facebook">
           </a>
         </div>
+
       </footer>
     </div>
   </div>
@@ -210,10 +212,17 @@
 
       div.row
         width: 258px
-        img
-          width: 64px
-          height: 64px
-          border: 0
+        //img
+          //width: 64px
+          //height: 64px
+          //border: 0
+
+    img
+      width: 30px
+      height: 30px
+      border: 0
+      margin-left: 4px
+      margin-right: 4px
 
   //div[role="banner"] > main.offset
     //margin-top: 73px
