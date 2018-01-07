@@ -42,7 +42,7 @@
       </main>
       <footer class="container-fluid">
         <div class="contacts">
-          <p class="row justify-content-center">Контактный телефон: +38050-333-33-33</p>
+          <p class="row justify-content-center">Контактный телефон: +38095-079-33-33</p>
           <p class="row justify-content-center">Электронный адрес: test@gmail.com</p>
           <div class="row justify-content-center">
             <a href="#">
