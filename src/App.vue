@@ -43,7 +43,7 @@
       <footer class="container-fluid">
         <div class="contacts">
           <p class="row justify-content-center">Контактный телефон: +38050-333-33-33</p>
-          <p class="row justify-content-center">Электронный адрес: test@gmail.com</p>
+          <p class="row justify-content-center">Электронный адрес: virvira@gmail.com</p>
           <div class="row justify-content-center">
             <a href="#">
               <img src="./assets/social-vk.png" alt="VK">
