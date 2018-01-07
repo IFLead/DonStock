@@ -34,7 +34,6 @@
       </header>
       <main>
         <div class="pins">
-
         </div>
         <div role="article">
           <cards></cards>
