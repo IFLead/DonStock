@@ -46,10 +46,10 @@
 
           </div>
         <div class="row justify-content-center">
-          <a href="#">
+          <a  class="icon" href="#">
             <img src="./assets/social-vk.png" alt="VK">
           </a>
-          <a href="#">
+          <a class="icon" href="#">
             <img src="./assets/social-instagram.png" alt="Instagram">
           </a>
           <a href="#">
@@ -109,6 +109,7 @@
   input[type="button"].green-btn
     background-color: $green
     color: white
+
 
   input[type="button"].transp-btn
     background-color: transparent
@@ -206,9 +207,12 @@
 
     .contacts
 
+      margin-bottom: 40px
+
       p
         font-size: 2.4074074vh
         color: white
+        margin-bottom: 10px
 
       div.row
         width: 258px
@@ -218,11 +222,12 @@
           //border: 0
 
     img
-      width: 30px
-      height: 30px
+      width: 44px
+      height: 44px
       border: 0
-      margin-left: 4px
-      margin-right: 4px
+
+    .icon
+      margin-right: 22px
 
   //div[role="banner"] > main.offset
     //margin-top: 73px

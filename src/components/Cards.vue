@@ -74,8 +74,8 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center new ">
-      <input type="button" value="Показать еще" class=" green-btn">
+    <div class="justify-content-center row new">
+      <input type="button" value="Показать еще" class="green-btn">
     </div>
   </div>
 </template>
