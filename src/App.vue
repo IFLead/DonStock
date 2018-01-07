@@ -44,7 +44,7 @@
         <div class="contacts">
           <p class="row justify-content-center">Контактный телефон: +38095-079-33-33</p>
           <p class="row justify-content-center">Электронный адрес: test@gmail.com</p>
-          <div class="row container-fluid justify-content-center">
+          <div class="row justify-content-center">
             <a href="#">
               <img src="./assets/social-vk.png" alt="VK">
             </a>
