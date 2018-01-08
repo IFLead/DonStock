@@ -34,19 +34,22 @@
       </header>
       <main>
         <div class="pins">
+          <div>
+            <b-btn v-b-modal.modal1 centered>Launch demo modal</b-btn>
+          </div>
         </div>
         <div role="article">
           <cards></cards>
         </div>
       </main>
-      <footer class="container-fluid">
+      <footer class="container-fluid main">
         <div class="contacts">
           <p class="row justify-content-center">Контактный телефон: +38095-079-33-33</p>
           <p class="row justify-content-center">Электронный адрес: virvira@gmail.com</p>
 
-          </div>
+        </div>
         <div class="row justify-content-center">
-          <a  class="icon" href="#">
+          <a class="icon" href="#">
             <img src="./assets/social-vk.png" alt="VK">
           </a>
           <a class="icon" href="#">
@@ -58,6 +61,12 @@
         </div>
 
       </footer>
+    </div>
+    <div class="modals">
+      <!-- Modal Component -->
+       <b-modal id="modal1" hide-header hide-footer centered>
+         <p class="tagline">Чтобы добавить магазин, необходимо <br> зарегистрироваться в 2 клика</p>
+       </b-modal>
     </div>
   </div>
 </template>
@@ -109,7 +118,6 @@
   input[type="button"].green-btn
     background-color: $green
     color: white
-
 
   input[type="button"].transp-btn
     background-color: transparent
@@ -200,7 +208,7 @@
       height: 11.112vh
       background-color: black
 
-  footer
+  footer.main
     height: 38.889vh
     background-color: black
     padding-top: 11.6667vh
@@ -216,10 +224,13 @@
 
       div.row
         width: 258px
-        //img
-          //width: 64px
-          //height: 64px
-          //border: 0
+        -webkit-box-pack: center !important
+        -ms-flex-pack: center !important
+        justify-content: center !important
+    //img
+      //width: 64px
+      //height: 64px
+      //border: 0
 
     img
       width: 44px
@@ -228,6 +239,17 @@
 
     .icon
       margin-right: 22px
+
+  div.modals
+
+    p.tagline
+      padding-top: 10px
+      padding-left: 5px
+      padding-right: 5px
+      font-size: 1.56vw
+      line-height: 2.605vw
+      color: black
+      text-align: center
 
   //div[role="banner"] > main.offset
     //margin-top: 73px
