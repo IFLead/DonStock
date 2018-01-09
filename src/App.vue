@@ -30,11 +30,9 @@
     </div>
     <div role="main">
       <header class="categories">
-        <categories></categories>
+        <categories :categories="categories"></categories>
       </header>
       <main>
-        <div class="pins">
-        </div>
         <div role="article">
           <cards></cards>
         </div>
@@ -44,9 +42,9 @@
           <p class="row justify-content-center">Контактный телефон: +38095-079-33-33</p>
           <p class="row justify-content-center">Электронный адрес: virvira@gmail.com</p>
 
-          </div>
+        </div>
         <div class="row justify-content-center">
-          <a  class="icon" href="#">
+          <a class="icon" href="#">
             <img src="./assets/social-vk.png" alt="VK">
           </a>
           <a class="icon" href="#">
@@ -71,7 +69,20 @@
       Cards,
       Categories
     },
-    name: 'app'
+    name: 'app',
+    data () {
+      return {
+        categories: [
+          {name: 'Одежда', selected: false},
+          {name: 'Электроника', selected: false},
+          {name: 'Подарки', selected: false},
+          {name: 'Косметика', selected: false},
+          {name: 'Обувь', selected: false},
+          {name: 'Аксессуары', selected: false},
+          {name: 'Спорт', selected: false}
+        ]
+      }
+    }
   }
 </script>
 
@@ -109,7 +120,6 @@
   input[type="button"].green-btn
     background-color: $green
     color: white
-
 
   input[type="button"].transp-btn
     background-color: transparent
@@ -196,10 +206,6 @@
 
   div[role="main"]
 
-    header.categories
-      height: 11.112vh
-      background-color: black
-
   footer
     height: 38.889vh
     background-color: black
@@ -216,10 +222,10 @@
 
       div.row
         width: 258px
-        //img
-          //width: 64px
-          //height: 64px
-          //border: 0
+    //img
+      //width: 64px
+      //height: 64px
+      //border: 0
 
     img
       width: 44px

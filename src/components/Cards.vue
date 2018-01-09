@@ -23,56 +23,58 @@
           </flickity>
         </div>
         <div class="body">
-          <p class="title">{{card.name}}</p>
+          <div class="title">
+            <p class="title">{{card.name}}</p>
+          </div>
           <div class="links">
             <a href="#">
-              <img src="../assets/website-link.png" alt="HTML tutorial">
+              <img src="../assets/website-link.png" alt="">
             </a>
             <a href="#">
-              <img src="../assets/vk-link.png" alt="HTML tutorial">
+              <img src="../assets/vk-link.png" alt="">
             </a>
             <a href="#">
-              <img src="../assets/instagram-link.png" alt="HTML tutorial">
+              <img src="../assets/instagram-link.png" alt="">
             </a>
           </div>
         </div>
       </div>
-      <div v-for="card in cards" class="item-card card">
-        <div class="top">
-          <div class="voting">
-            <button class="minus">
-              <img height="44" width="44" src="../assets/minus-vote.svg" alt="plus">
-            </button>
-            <p class="text-center">Голосовать</p>
-            <button class="plus">
-              <img height="44" width="44" src="../assets/plus-vote.svg" alt="plus">
-            </button>
-          </div>
-          <div class="rating">
-            <p>+13</p>
-          </div>
-        </div>
-        <div class="img">
-          <flickity ref="flickity" :options="flickityOptions">
-            <img class="carousel-cell" v-for="img in card.imgs" v-bind:src="img" alt="Main Image">
-            <!--<img class="blurred" v-bind:src="card.path" alt="Blurred image">-->
-          </flickity>
-        </div>
-        <div class="body">
-          <p class="title">{{card.name}}</p>
-          <div class="links">
-            <a href="#">
-              <img src="../assets/website-link.png" alt="HTML tutorial">
-            </a>
-            <a href="#">
-              <img src="../assets/vk-link.png" alt="HTML tutorial">
-            </a>
-            <a href="#">
-              <img src="../assets/instagram-link.png" alt="HTML tutorial">
-            </a>
-          </div>
-        </div>
-      </div>
+      <!--<div v-for="card in cards" class="item-card card">-->
+      <!--<div class="top">-->
+      <!--<div class="voting">-->
+      <!--<button class="minus">-->
+      <!--<img height="44" width="44" src="../assets/minus-vote.svg" alt="plus">-->
+      <!--</button>-->
+      <!--<p class="text-center">Голосовать</p>-->
+      <!--<button class="plus">-->
+      <!--<img height="44" width="44" src="../assets/plus-vote.svg" alt="plus">-->
+      <!--</button>-->
+      <!--</div>-->
+      <!--<div class="rating">-->
+      <!--<p>+13</p>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="img">-->
+      <!--<flickity ref="flickity" :options="flickityOptions">-->
+      <!--<img class="carousel-cell" v-for="img in card.imgs" v-bind:src="img" alt="Main Image">-->
+      <!--&lt;!&ndash;<img class="blurred" v-bind:src="card.path" alt="Blurred image">&ndash;&gt;-->
+      <!--</flickity>-->
+      <!--</div>-->
+      <!--<div class="body">-->
+      <!--<p class="title">{{card.name}}</p>-->
+      <!--<div class="links">-->
+      <!--<a href="#">-->
+      <!--<img src="../assets/website-link.png" alt="HTML tutorial">-->
+      <!--</a>-->
+      <!--<a href="#">-->
+      <!--<img src="../assets/vk-link.png" alt="HTML tutorial">-->
+      <!--</a>-->
+      <!--<a href="#">-->
+      <!--<img src="../assets/instagram-link.png" alt="HTML tutorial">-->
+      <!--</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
     </div>
     <div class="justify-content-center row new">
       <input type="button" value="Показать еще" class="green-btn">
@@ -130,6 +132,7 @@
     /*transition: margin 1s*/
 
   @import '~bootstrap/scss/bootstrap'
+  @import '../style/variables'
 
   div.cards
     //padding: 40px
@@ -163,11 +166,12 @@
         box-shadow: 0 27px 100px -64px rgba(0, 0, 0, 0.5)
 
         @include media-breakpoint-only(xs)
-          height: 402.14643px
+          max-height: 90vh
+          height: 643px
           min-width: 260px
 
         div.img
-          height: calc(79.230769% + 4px)
+          height: 80%
           //515
           width: 100%
 
@@ -223,8 +227,10 @@
             display: flex
             text-align: center
             z-index: 1
+            margin-top: -75px
 
-            %btn
+            %btn-vote
+              @extend %btn-img-inside
               border: 0
               outline: none
               background-color: transparent
@@ -242,23 +248,33 @@
 
             .plus
               margin-left: auto
-              @extend %btn
+              @extend %btn-vote
 
             .minus
               margin-left: 0
-              @extend %btn
+              @extend %btn-vote
 
         div.body
-          p.title
-            text-align: center
-            font-size: 27px
-            margin-top: 15px
+          height: 20%
+          div.title
+            height: 40%
+            padding-top: 15px
+            p.title
+              text-align: center
+              font-size: 27px
+
           div.links
+            height: 60%
             padding-left: 110px
             padding-right: 110px
+            padding-bottom: 20px
             display: flex
             justify-content: space-evenly
             a
+              width: 45px
+              height: 45px
+              align-self: flex-end
+
               img
                 opacity: 0.25
                 width: 45px
