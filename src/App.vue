@@ -65,9 +65,23 @@
     </div>
     <div class="modals">
       <!-- Modal Component -->
-       <b-modal id="modal1" hide-header hide-footer centered>
+       <b-modal class="first_modal" id="modal1" hide-header hide-footer centered>
+         <div class="modal-body">
          <p class="tagline">Чтобы добавить магазин, необходимо <br> зарегистрироваться в 2 клика</p>
+         <div class="row justify-content-center">
+           <a class="icon" href="#">
+             <img src="./assets/Add_shop_vk.png" alt="VK">
+           </a>
+           <a class="icon" href="#">
+             <img src="./assets/Add_shop_fb.png" alt="Facebook">
+           </a>
+           <a href="#">
+             <img src="./assets/Add_shop_google.png" alt="Google">
+           </a>
+         </div>
+         </div>
        </b-modal>
+
     </div>
   </div>
 </template>
@@ -234,7 +248,7 @@
 
       div.row
         width: 258px
-        //todo: @macheteya я же говорил, все 3 добавлять не надо, достаточно одного
+        //todo: @dobre, igor
         /*-webkit-box-pack: center !important*/
         /*-ms-flex-pack: center !important*/
         justify-content: center !important
@@ -249,14 +263,32 @@
 
   div.modals
 
+    b-modal
+      .modal-body
+        padding: 0px
+
     p.tagline
+      justify-content: center !important
       padding-top: 10px
-      padding-left: 5px
-      padding-right: 5px
       font-size: 1.56vw
       line-height: 2.605vw
       color: black
       text-align: center
+      margin-bottom: 0px
+      padding-bottom: 30px
+
+    div.row
+      justify-content: center !important
+      padding-bottom: 28px
+
+    img
+      width: 42px
+      height: 42px
+      border: 0
+      padding-right: 0px
+
+    .icon
+      padding-right: 26px
 
   //div[role="banner"] > main.offset
     //margin-top: 73px
