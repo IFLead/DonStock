@@ -76,7 +76,7 @@
       <!--</div>-->
       <!--</div>-->
     </div>
-    <div class="justify-content-center row new">
+    <div class="row justify-content-center new">
       <input type="button" value="Показать еще" class="green-btn">
     </div>
   </div>
