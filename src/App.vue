@@ -4,7 +4,7 @@
       <header class="container-fluid">
         <section class="d-none d-md-block h-100">
           <div class="row h-100">
-            <div class="col-2 offset-8"><input class="transp-btn" type="button" value="Добавить магазин"></div>
+            <div class="col-2 offset-8"><input v-b-modal.modal1 centered class="transp-btn" type="button" value="Добавить магазин"></div>
             <div class="col-2"><input class="green-btn sign-in" type="button" value="Войти"></div>
           </div>
         </section>
@@ -35,9 +35,10 @@
       <main>
         <!--todo: need to remove div.pins-->
         <div class="pins">
-          <div>
-            <b-btn v-b-modal.modal1 centered>Launch demo modal</b-btn>
-          </div>
+          <!--НУЖНО УБРАТЬ-->
+          <!--<div>-->
+            <!--<b-btn v-b-modal.modal1 centered>Launch demo modal</b-btn>-->
+          <!--</div>-->
         </div>
         <div role="article">
           <cards></cards>
@@ -248,9 +249,6 @@
 
       div.row
         width: 258px
-        //todo: @dobre, igor
-        /*-webkit-box-pack: center !important*/
-        /*-ms-flex-pack: center !important*/
         justify-content: center !important
 
     img
@@ -263,32 +261,46 @@
 
   div.modals
 
-    b-modal
-      .modal-body
-        padding: 0px
+    .modal-content
+      border-radius: 25px
+      width: 630px
+      height: 285px
+
+
+    .modal-body
+      padding: 0px
+      width: 630px
+      height: 285px
 
     p.tagline
       justify-content: center !important
-      padding-top: 10px
-      font-size: 1.56vw
-      line-height: 2.605vw
+      padding-top: 45px
+      padding-bottom: 45px
+      padding-right: 48px
+      padding-left: 48px
+      /*font-size: 1.56vw*/
+      /*line-height: 2.605vw*/
+      font-size: 30px
+      line-height: 45px
       color: black
       text-align: center
       margin-bottom: 0px
-      padding-bottom: 30px
+
 
     div.row
       justify-content: center !important
-      padding-bottom: 28px
+      padding-bottom: 41px
+      padding-right: 180px
+      padding-left: 180px
 
     img
-      width: 42px
-      height: 42px
+      width: 64px
+      height: 64px
       border: 0
       padding-right: 0px
 
     .icon
-      padding-right: 26px
+      padding-right: 39px
 
   //div[role="banner"] > main.offset
     //margin-top: 73px
