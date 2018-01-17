@@ -4,7 +4,7 @@
       <header class="container-fluid">
         <section class="d-none d-md-block h-100">
           <div class="row h-100">
-            <div class="col-2 offset-8"><input v-b-modal.modal1 centered class="transp-btn" type="button" value="Добавить магазин"></div>
+            <div class="col-2 offset-8"><input v-b-modal.modal_add centered class="transp-btn" type="button" value="Добавить магазин"></div>
             <div class="col-2"><input class="green-btn sign-in" type="button" value="Войти"></div>
           </div>
         </section>
@@ -35,10 +35,10 @@
       <main>
         <!--todo: need to remove div.pins-->
         <div class="pins">
-          <!--НУЖНО УБРАТЬ-->
-          <!--<div>-->
-            <!--<b-btn v-b-modal.modal1 centered>Launch demo modal</b-btn>-->
-          <!--</div>-->
+          <div>
+            <b-btn v-b-modal.modal_category centered>Druga knopka</b-btn>
+            <b-btn v-b-modal.modal_information centered>Generalna knopka</b-btn>
+          </div>
         </div>
         <div role="article">
           <cards></cards>
@@ -66,9 +66,8 @@
     </div>
     <div class="modals">
       <!-- Modal Component -->
-       <b-modal class="first_modal" id="modal1" hide-header hide-footer centered>
-         <div class="modal-body">
-         <p class="tagline">Чтобы добавить магазин, необходимо <br> зарегистрироваться в 2 клика</p>
+      <b-modal id="modal_add" hide-header hide-footer centered>
+        <p class="tagline">Чтобы добавить магазин, необходимо <br> зарегистрироваться в 2 клика</p>
          <div class="row justify-content-center">
            <a class="icon" href="#">
              <img src="./assets/Add_shop_vk.png" alt="VK">
@@ -80,9 +79,48 @@
              <img src="./assets/Add_shop_google.png" alt="Google">
            </a>
          </div>
-         </div>
        </b-modal>
 
+      <b-modal id="modal_category" size="lg" hide-header hide-footer centered>
+        <p class="tagline">Выберите категории Вашего интернет-магазина</p>
+        <div class="form-group">
+          <select class="form-control" id="change_category">
+            <option selected disabled hidden><p>Выберите категории</p></option>
+            <option><p>Подарки</p></option>
+            <option><p>Спорт</p></option>
+            <option><p>Обувь</p></option>
+            <option><p>Косметика</p></option>
+            <option><p>Электроника</p></option>
+            <option><p>Аксессуары</p></option>
+            <option><p>Одежда</p></option>
+          </select>
+        </div>
+        <div class="back-button">
+          <a href="#">
+            <img src="./assets/back_button_modal.png" alt="Назад">
+          </a>
+        </div>
+        <input class="green-btn" type="button" value="Опубликовать">
+      </b-modal>
+
+      <b-modal id="modal_information" size="lg" hide-header hide-footer centered>
+        <div class="main-left">
+          <div class="main-photo">
+              <div class="icon">
+                <img src="./assets/photo-camera.png"  alt="Главное фото">
+              </div>
+          </div>
+          <label>Главное фото</label>
+          <div class="general-information">
+            <p class="tagline">Основная информация</p>
+            <input type="text" placeholder="Название магазина">
+          </div>
+        </div>
+        <div class="border">
+          <img src="./assets/border.png"  alt="Граница">
+        </div>
+
+      </b-modal>
     </div>
   </div>
 </template>
@@ -252,8 +290,8 @@
         justify-content: center !important
 
     img
-      width: 44px
-      height: 44px
+      width: 64px
+      height: 64px
       border: 0
 
     .icon
@@ -261,46 +299,194 @@
 
   div.modals
 
-    .modal-content
-      border-radius: 25px
-      width: 630px
-      height: 285px
+    #modal_add
+
+      .modal-content
+        border-radius: 25px
+        width: 630px
+        height: 285px
 
 
-    .modal-body
-      padding: 0px
-      width: 630px
-      height: 285px
+      .modal-body
+        padding: 0px
+        width: 630px
+        height: 285px
 
-    p.tagline
-      justify-content: center !important
-      padding-top: 45px
-      padding-bottom: 45px
-      padding-right: 48px
-      padding-left: 48px
-      /*font-size: 1.56vw*/
-      /*line-height: 2.605vw*/
-      font-size: 30px
-      line-height: 45px
-      color: black
-      text-align: center
-      margin-bottom: 0px
+      p.tagline
+        justify-content: center !important
+        padding-top: 45px
+        padding-bottom: 45px
+        padding-right: 48px
+        padding-left: 48px
+        /*font-size: 1.56vw*/
+        /*line-height: 2.605vw*/
+        font-size: 30px
+        line-height: 45px
+        color: black
+        text-align: center
+        margin-bottom: 0px
 
 
-    div.row
-      justify-content: center !important
-      padding-bottom: 41px
-      padding-right: 180px
-      padding-left: 180px
+      div.row
+        justify-content: center !important
+        padding-bottom: 41px
+        padding-right: 180px
+        padding-left: 180px
 
-    img
-      width: 64px
-      height: 64px
-      border: 0
-      padding-right: 0px
+      img
+        width: 64px
+        height: 64px
+        border: 0
+        padding-right: 0px
 
-    .icon
-      padding-right: 39px
+      .icon
+        padding-right: 39px
+
+    #modal_category
+
+      .modal-lg
+        max-width: 908px
+
+      .modal-body
+        padding: 0px
+
+      .modal-content
+        border-radius: 25px
+        width: 908px
+        height: 348px
+
+      p.tagline
+        /*justify-content: center !important*/
+        /*font-size: 1.56vw*/
+        /*line-height: 2.605vw*/
+        font-size: 30px
+        line-height: 40px
+        color: black
+        text-align: center
+        padding-top: 51px
+        /*padding-right: 122px*/
+        /*padding-left: 122px*/
+        padding-bottom: 60px
+        margin-bottom: 0px
+
+      .form-group
+        padding-left: 241px
+        padding-right: 241px
+        margin: 0px
+        padding-bottom: 67px
+
+        select
+          width: 426px
+          border-radius: 0px
+          background: transparent url("./assets/combobox_category.png") no-repeat right
+          -webkit-appearance: none
+          -moz-appearance: none
+          appearance: none
+
+
+        .form-control
+          width: 426px
+          height: 39.5px
+          padding: 0px
+          font-size: 24px
+          color: #C5C5C5
+          border-bottom: 1px solid black
+          border-top: none
+          border-left: none
+          border-right: none
+
+          option
+            font-size: 24px
+            min-height: 32px
+            border: 1px solid #95989A
+            color: black
+
+          option:checked
+            background-color: #1DB954
+
+          option:hover
+            background-color: #1DB954
+
+      .back-button
+        float: left
+        width: 50px
+        height: 50px
+        padding-left: 82px
+        padding-bottom: 34px
+
+      .green-btn
+        width: 260px
+        height: 60px
+        border-radius: 35px
+        background-color: $green
+        color: white
+        float: right
+        margin-bottom: 30px
+        margin-right: 31px
+        font-size: 30px
+
+    #modal_information
+
+      .modal-lg
+        max-width: 1200px
+
+      .modal-body
+        padding: 0px
+
+      .modal-content
+        border-radius: 25px
+        width: 1200px
+        height: 950px
+
+      .main-left
+        float: left
+
+        .main-photo
+          width: 414px
+          height: 328px
+          border-radius: 25px
+          border: 1px solid #E2E2E2
+          margin-top: 76px
+          margin-left: 91px
+
+          .icon
+            width: 84px
+            height: 84px
+            padding-left: 165px
+            padding-top: 122px
+
+        label
+          color: #C5C5C5
+          font-size: 24px
+          line-height: 32px
+          padding-top: 20px
+          padding-left: 222px
+          margin-bottom: 0px
+
+        .general-information
+          width: 426px
+          height: 116.5px
+          padding-top: 52px
+          padding-left: 91px
+
+          p.tagline
+            /*justify-content: center !important*/
+            font-size: 30px
+            line-height: 40px
+            color: black
+            padding-bottom: 60px
+            margin-bottom: 0px
+
+
+      .border
+        float: left
+        margin-left: 94px
+        margin-top: 18px
+
+
+  /*todo: 1) выделение каждого элемента select при наведении курсора */
+    /*2) граница каждого элемента select*/
+    /*3) отступ текста 30px*/
 
   //div[role="banner"] > main.offset
     //margin-top: 73px
