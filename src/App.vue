@@ -112,14 +112,24 @@
           </div>
           <label>Главное фото</label>
           <div class="general-information">
-            <p class="tagline">Основная информация</p>
+            <div class="proverka"><p class="tagline">Основная информация</p></div>
             <input type="text" placeholder="Название магазина">
           </div>
         </div>
         <div class="border">
           <img src="./assets/border.png"  alt="Граница">
         </div>
-
+        <div class="main-right">
+          <div class="product">
+            <div class="production-photos">
+              <div class="photo">
+                <div class="icon">
+                  <img src="./assets/photo-camera.png"  alt="Главное фото">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </b-modal>
     </div>
   </div>
@@ -383,7 +393,6 @@
           -moz-appearance: none
           appearance: none
 
-
         .form-control
           width: 426px
           height: 39.5px
@@ -466,22 +475,57 @@
         .general-information
           width: 426px
           height: 116.5px
-          padding-top: 52px
-          padding-left: 91px
+          margin-top: 52px
+          margin-left: 91px
 
-          p.tagline
+          .proverka
+            margin-left: 45px
+
+            .tagline
             /*justify-content: center !important*/
             font-size: 30px
             line-height: 40px
             color: black
-            padding-bottom: 60px
+            padding-bottom: 35px
             margin-bottom: 0px
 
+            p
+              margin-bottom: 0px
+
+          input[type="text"]
+            width: 426px
+            border-top: none
+            border-right: none
+            border-left: none
+            border-bottom: 1px solid black
+            font-size: 24px
+            line-height: 32px
+            padding-bottom: 10px
+            outline: none
+
+          input[type="text"]::-webkit-input-placeholder
+            color: #C5C5C5
 
       .border
         float: left
-        margin-left: 94px
+        margin-left: 81px
+        margin-right: 95px
         margin-top: 18px
+
+      .main-right
+        float: left
+
+        .product
+          margin-top: 76px
+          width: 410px
+
+          .production-photos
+            width: 200px
+            height: 328px
+            border-radius: 25px
+            border: 1px solid #E2E2E2
+            margin-top: 76px
+            margin-left: 91px
 
 
   /*todo: 1) выделение каждого элемента select при наведении курсора */
