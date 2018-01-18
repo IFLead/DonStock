@@ -112,7 +112,7 @@
           </div>
           <label>Главное фото</label>
           <div class="general-information">
-            <div class="proverka"><p class="tagline">Основная информация</p></div>
+            <div class="gen-lable"><p class="tagline">Основная информация</p></div>
             <input type="text" placeholder="Название магазина">
           </div>
         </div>
@@ -122,12 +122,66 @@
         <div class="main-right">
           <div class="product">
             <div class="production-photos">
-              <div class="photo">
-                <div class="icon">
-                  <img src="./assets/photo-camera.png"  alt="Главное фото">
+              <div class="row-photos">
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
+                </div>
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
+                </div>
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
+                </div>
+              </div>
+              <div class="row-photos">
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
+                </div>
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
+                </div>
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
+                </div>
+              </div>
+              <div class="row-photos">
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
+                </div>
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
+                </div>
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                  </div>
                 </div>
               </div>
             </div>
+            <label>Продукция</label>
+            <div class="shop-links">
+              <p class="tagline">Ссылка на Ваш магазин</p>
+              <input type="text" placeholder="Ссылка">
+              <input type="text" placeholder="Ссылка">
+              <input type="text" placeholder="Ссылка">
+            </div>
+            <input class="green-btn" type="button" value="Дальше">
           </div>
         </div>
       </b-modal>
@@ -458,7 +512,7 @@
           margin-top: 76px
           margin-left: 91px
 
-          .icon
+          div.icon
             width: 84px
             height: 84px
             padding-left: 165px
@@ -478,16 +532,16 @@
           margin-top: 52px
           margin-left: 91px
 
-          .proverka
-            margin-left: 45px
+          .gen-lable
+            margin-left: 51px
 
             .tagline
-            /*justify-content: center !important*/
-            font-size: 30px
-            line-height: 40px
-            color: black
-            padding-bottom: 35px
-            margin-bottom: 0px
+              /*justify-content: center !important*/
+              font-size: 30px
+              line-height: 40px
+              color: black
+              padding-bottom: 35px
+              margin-bottom: 0px
 
             p
               margin-bottom: 0px
@@ -517,15 +571,91 @@
 
         .product
           margin-top: 76px
-          width: 410px
+          width: 414.06px
 
           .production-photos
-            width: 200px
+            width: 414.06px
             height: 328px
-            border-radius: 25px
-            border: 1px solid #E2E2E2
-            margin-top: 76px
-            margin-left: 91px
+
+            .row-photos
+              margin-bottom: 29px
+              height: 90.33px
+
+              .photo
+                float: left
+                width: 118.02px
+                height: 90.33px
+                border-radius: 25px
+                border: 1px solid #E2E2E2
+                margin-right: 30px
+
+                .icon
+                  padding-left: 47.44px
+                  padding-top: 30.2px
+
+                  img
+                    width: 23.13px
+                    height: 23.13px
+
+              .photo:last-child
+                margin-right: 0px
+
+        label
+          color: #C5C5C5
+          font-size: 24px
+          line-height: 32px
+          padding-top: 20px
+          padding-left: 147px
+          margin-bottom: 0px
+
+        .shop-links
+          width: 426px
+          height: 289px
+          margin-top: 52px
+          margin-bottom: 52px
+
+          .tagline
+            /*justify-content: center !important*/
+            font-size: 30px
+            line-height: 40px
+            color: black
+            padding-bottom: 35px
+            margin-bottom: 0px
+            text-align: center
+
+          p
+            margin-bottom: 0px
+
+          input[type="text"]
+            width: 426px
+            border-top: none
+            border-right: none
+            border-left: none
+            border-bottom: 1px solid black
+            font-size: 24px
+            line-height: 32px
+            padding-bottom: 10px
+            outline: none
+            margin-bottom: 46px
+            background: transparent url("./assets/link.png") no-repeat right
+            background-position: 385px
+
+          input[type="text"]::-webkit-input-placeholder
+            color: #C5C5C5
+
+          input[type="text"]:last-child
+            margin-bottom: 0px
+
+        .green-btn
+          width: 260px
+          height: 60px
+          border-radius: 35px
+          background-color: $green
+          color: white
+          margin-left: 166px
+          font-size: 30px
+
+
 
 
   /*todo: 1) выделение каждого элемента select при наведении курсора */
