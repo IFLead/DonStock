@@ -2,16 +2,16 @@
   <div id="app">
     <div role="banner">
       <header class="container-fluid">
-        <section class="d-none d-md-block h-100">
+        <section class="h-100">
           <div class="row h-100">
-            <div class="col-2 offset-8"><input v-b-modal.modal_add centered class="transp-btn" type="button" value="Добавить магазин"></div>
-            <div class="col-2"><input class="green-btn sign-in" type="button" value="Войти"></div>
-          </div>
-        </section>
-        <section class="d-md-none d-lg-none d-xl-none h-100">
-          <div class="row h-100">
-            <div class="col-6 text-center"><input class="transp-btn" type="button" value="Добавить магазин"></div>
-            <div class="col-6 text-center"><input class="green-btn sign-in" type="button" value="Войти"></div>
+            <div class="col-6 col-lg-3 offset-lg-7 text-center">
+              <input v-b-modal.modal_add centered class="transp-btn add-shop" type="button"
+                     value="Добавить магазин">
+            </div>
+            <div class="col-6 col-lg-2 text-center">
+              <input class="green-btn sign-in" type="button"
+                     value="Войти">
+            </div>
           </div>
         </section>
       </header>
@@ -33,15 +33,8 @@
         <categories :categories="categories"></categories>
       </header>
       <main>
-        <!--todo: need to remove div.pins-->
-        <div class="pins">
-          <div>
-            <b-btn v-b-modal.modal_category centered>Druga knopka</b-btn>
-            <b-btn v-b-modal.modal_information centered>Generalna knopka</b-btn>
-          </div>
-        </div>
         <div role="article">
-          <cards></cards>
+          <cards :shops="shops" :categories="categories"></cards>
         </div>
       </main>
       <footer class="container-fluid main">
@@ -61,25 +54,32 @@
             <img src="./assets/social-facebook.png" alt="Facebook">
           </a>
         </div>
+        <div class="pins">
+          <div>
+            <b-btn v-b-modal.modal_category centered>Druga knopka</b-btn>
+            <b-btn v-b-modal.modal_information centered>Generalna knopka</b-btn>
+          </div>
+        </div>
 
       </footer>
     </div>
     <div class="modals">
       <!-- Modal Component -->
       <b-modal id="modal_add" hide-header hide-footer centered>
+
         <p class="tagline">Чтобы добавить магазин, необходимо <br> зарегистрироваться в 2 клика</p>
-         <div class="row justify-content-center">
-           <a class="icon" href="#">
-             <img src="./assets/Add_shop_vk.png" alt="VK">
-           </a>
-           <a class="icon" href="#">
-             <img src="./assets/Add_shop_fb.png" alt="Facebook">
-           </a>
-           <a href="#">
-             <img src="./assets/Add_shop_google.png" alt="Google">
-           </a>
-         </div>
-       </b-modal>
+        <div class="row justify-content-center">
+          <a class="icon" href="http://localhost:8000/auth/login/vk-oauth2">
+            <img src="./assets/Add_shop_vk.png" alt="VK">
+          </a>
+          <a class="icon" href="#">
+            <img src="./assets/Add_shop_fb.png" alt="Facebook">
+          </a>
+          <a href="#">
+            <img src="./assets/Add_shop_google.png" alt="Google">
+          </a>
+        </div>
+      </b-modal>
 
       <b-modal id="modal_category" size="lg" hide-header hide-footer centered>
         <p class="tagline">Выберите категории Вашего интернет-магазина</p>
@@ -102,13 +102,12 @@
         </div>
         <input class="green-btn" type="button" value="Опубликовать">
       </b-modal>
-
       <b-modal id="modal_information" size="lg" hide-header hide-footer centered>
         <div class="main-left">
           <div class="main-photo">
-              <div class="icon">
-                <img src="./assets/photo-camera.png"  alt="Главное фото">
-              </div>
+            <div class="icon">
+              <img src="./assets/photo-camera.png" alt="Главное фото">
+            </div>
           </div>
           <label>Главное фото</label>
           <div class="general-information">
@@ -117,7 +116,7 @@
           </div>
         </div>
         <div class="border">
-          <img src="./assets/border.png"  alt="Граница">
+          <img src="./assets/border.png" alt="Граница">
         </div>
         <div class="main-right">
           <div class="product">
@@ -125,51 +124,51 @@
               <div class="row-photos">
                 <div class="photo">
                   <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
                   </div>
                 </div>
                 <div class="photo">
                   <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
                   </div>
                 </div>
                 <div class="photo">
                   <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
-                  </div>
-                </div>
-              </div>
-              <div class="row-photos">
-                <div class="photo">
-                  <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
-                  </div>
-                </div>
-                <div class="photo">
-                  <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
-                  </div>
-                </div>
-                <div class="photo">
-                  <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
                   </div>
                 </div>
               </div>
               <div class="row-photos">
                 <div class="photo">
                   <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
                   </div>
                 </div>
                 <div class="photo">
                   <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
                   </div>
                 </div>
                 <div class="photo">
                   <div class="icon">
-                    <img src="./assets/photo-camera.png"  alt="Фото продукции">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
+                  </div>
+                </div>
+              </div>
+              <div class="row-photos">
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
+                  </div>
+                </div>
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
+                  </div>
+                </div>
+                <div class="photo">
+                  <div class="icon">
+                    <img src="./assets/photo-camera.png" alt="Фото продукции">
                   </div>
                 </div>
               </div>
@@ -199,17 +198,24 @@
       Categories
     },
     name: 'app',
+    mounted () {
+      this.$http.get('http://127.0.0.1:8000/shops/?format=json').then((response) => {
+        this.shops = response.data
+      })
+    },
     data () {
       return {
         categories: [
-          {name: 'Одежда', selected: false},
-          {name: 'Электроника', selected: false},
-          {name: 'Подарки', selected: false},
-          {name: 'Косметика', selected: false},
-          {name: 'Обувь', selected: false},
-          {name: 'Аксессуары', selected: false},
-          {name: 'Спорт', selected: false}
-        ]
+          {id: 1, name: 'Одежда'},
+          {id: 2, name: 'Электроника', selected: false},
+          {id: 3, name: 'Подарки', selected: false},
+          {id: 4, name: 'Косметика', selected: false},
+          {id: 5, name: 'Обувь', selected: false},
+          {id: 6, name: 'Аксессуары', selected: false},
+          {id: 7, name: 'Спорт', selected: false}
+        ],
+        shops: []
+
       }
     }
   }
@@ -238,9 +244,11 @@
     height: 100%
     max-height: 60px
     min-height: 40px
-    font-size: 1.6vw
+    font-size: 30px
     border-radius: 50px
     outline: none
+    @include media-breakpoint-down(sm)
+      font-size: 20px
 
     &:hover
       filter: brightness(80%)
@@ -253,7 +261,7 @@
   input[type="button"].transp-btn
     background-color: transparent
     color: black
-    @include media-breakpoint-down(sm)
+    @include media-breakpoint-down(md)
       color: white
 
   // tree
@@ -265,23 +273,28 @@
     background: url(./assets/DonShops.svg) no-repeat right
     padding-top: 40px
     @include media-breakpoint-between(md, lg)
-      background: url(./assets/DonShops-768.svg) no-repeat right
+      background: url(./assets/DonShops-768.svg)
+      background-size: cover
+      background-position: 15% 50%
       padding-top: 20px
+    @include media-breakpoint-down(md)
+      padding-top: 0
     @include media-breakpoint-down(sm)
       background: url("./assets/DonShops-Bottom.svg") no-repeat left bottom, url("./assets/DonShops-Top.svg") no-repeat right top
       background-size: 45%, 55%
-      padding-top: 0
     @include media-breakpoint-down(xs)
       background-size: 65%, 65%
 
     header
-      height: 5.555555556%
+      height: 5.55555556%
       color: white
-      @include media-breakpoint-down(sm)
-        height: 65px
+      @include media-breakpoint-down(md)
+        height: 90px
         background-color: rgba(0, 0, 0, 0.5)
         padding-top: 15px
         padding-bottom: 15px
+      @include media-breakpoint-down(sm)
+        height: 65px
 
         input[type="button"]
           max-height: 35px
@@ -290,10 +303,20 @@
           font-size: 15px
           @include media-breakpoint-down(sm)
             max-width: 146px !important
-            width: 146px !important
+            width: 100% !important
+
+      input[type="button"]
+        width: 100%
+        font-size: 2.77vmin
+        @include media-breakpoint-down(xs)
+          font-size: 15px
+
+      input[type="button"].add-shop
+        width: auto
 
       input[type="button"].sign-in
         width: 63.03106%
+        min-width: 140px
         max-width: 181px
 
     main
@@ -323,9 +346,14 @@
           margin-top: 5.247376vh
 
       p.tagline
-        font-size: 1.56vw
-        line-height: 2.605vw
+        font-size: 2.78vh
+        //1.56vw
+        line-height: 4.629633vh
+        //2.605vw
         color: black
+        @include media-breakpoint-down(lg)
+          font-size: 2.56vh
+
         @include media-breakpoint-down(sm)
           font-size: 15px
           line-height: 25px
@@ -354,8 +382,8 @@
         justify-content: center !important
 
     img
-      width: 64px
-      height: 64px
+      width: 44px
+      height: 44px
       border: 0
 
     .icon
@@ -369,7 +397,6 @@
         border-radius: 25px
         width: 630px
         height: 285px
-
 
       .modal-body
         padding: 0px
@@ -390,7 +417,6 @@
         text-align: center
         margin-bottom: 0px
 
-
       div.row
         justify-content: center !important
         padding-bottom: 41px
@@ -398,8 +424,8 @@
         padding-left: 180px
 
       img
-        width: 64px
-        height: 64px
+        width: 44px
+        height: 44px
         border: 0
         padding-right: 0px
 
@@ -654,9 +680,6 @@
           color: white
           margin-left: 166px
           font-size: 30px
-
-
-
 
   /*todo: 1) выделение каждого элемента select при наведении курсора */
     /*2) граница каждого элемента select*/

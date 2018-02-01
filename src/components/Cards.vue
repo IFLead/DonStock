@@ -1,7 +1,8 @@
 <template>
   <div class="cards w-100">
     <div class="items card-deck justify-content-center">
-      <div v-for="card in cards" class="item-card card gold">
+      <div v-for="shop in shops" v-show="isFiltered(shop.categories)"
+           class="item-card card gold">
         <div class="top">
           <div class="voting">
             <button class="minus">
@@ -18,66 +19,31 @@
         </div>
         <div class="img">
           <flickity ref="flickity" :options="flickityOptions">
-            <img class="carousel-cell" v-for="img in card.imgs" v-bind:data-flickity-lazyload="img" alt="Main Image">
+            <img class="carousel-cell" v-for="photo in shop.photos" v-bind:data-flickity-lazyload="photo.url"
+                 alt="Main Image">
             <!--<img class="blurred" v-bind:src="card.path" alt="Blurred image">-->
           </flickity>
         </div>
         <div class="body">
           <div class="title">
-            <p class="title">{{card.name}}</p>
+            <p class="title">{{shop.name}}</p>
           </div>
           <div class="links">
-            <a href="#">
-              <img src="../assets/website-link.png" alt="">
+            <a target="_blank" :href="shop.link_one">
+              <img :src="chooseImage(shop.link_one)" alt="">
             </a>
-            <a href="#">
-              <img src="../assets/vk-link.png" alt="">
+            <a target="_blank" v-if="shop.link_two" :href="shop.link_two">
+              <img :src="chooseImage(shop.link_two)" alt="">
             </a>
-            <a href="#">
-              <img src="../assets/instagram-link.png" alt="">
+            <a target="_blank" v-if="shop.link_three" :href="shop.link_three">
+              <img :src="chooseImage(shop.link_three)" alt="">
             </a>
           </div>
         </div>
       </div>
-      <!--<div v-for="card in cards" class="item-card card">-->
-      <!--<div class="top">-->
-      <!--<div class="voting">-->
-      <!--<button class="minus">-->
-      <!--<img height="44" width="44" src="../assets/minus-vote.svg" alt="plus">-->
-      <!--</button>-->
-      <!--<p class="text-center">Голосовать</p>-->
-      <!--<button class="plus">-->
-      <!--<img height="44" width="44" src="../assets/plus-vote.svg" alt="plus">-->
-      <!--</button>-->
-      <!--</div>-->
-      <!--<div class="rating">-->
-      <!--<p>+13</p>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--<div class="img">-->
-      <!--<flickity ref="flickity" :options="flickityOptions">-->
-      <!--<img class="carousel-cell" v-for="img in card.imgs" v-bind:src="img" alt="Main Image">-->
-      <!--&lt;!&ndash;<img class="blurred" v-bind:src="card.path" alt="Blurred image">&ndash;&gt;-->
-      <!--</flickity>-->
-      <!--</div>-->
-      <!--<div class="body">-->
-      <!--<p class="title">{{card.name}}</p>-->
-      <!--<div class="links">-->
-      <!--<a href="#">-->
-      <!--<img src="../assets/website-link.png" alt="HTML tutorial">-->
-      <!--</a>-->
-      <!--<a href="#">-->
-      <!--<img src="../assets/vk-link.png" alt="HTML tutorial">-->
-      <!--</a>-->
-      <!--<a href="#">-->
-      <!--<img src="../assets/instagram-link.png" alt="HTML tutorial">-->
-      <!--</a>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
     </div>
     <div class="row justify-content-center new">
-      <input type="button" value="Показать еще" class="green-btn">
+      <input type="button" value="Показать еще" class="green-btn" v-on:click="loadShops()">
     </div>
   </div>
 </template>
@@ -90,24 +56,12 @@
     components: {
       Flickity
     },
+    props: ['shops', 'categories'],
     mounted () {
 
     },
     data () {
       return {
-        cards: [
-          {
-            imgs: ['../../static/img/test/Gucci.jpg', '../../static/img/test/Adidas.jpg', '../../static/img/test/Nike.jpg', '../../static/img/test/Pizza Store.jpg', '../../static/img/test/Red&Red.jpg'],
-            name: 'Gucci'
-          },
-          {imgs: ['../../static/img/test/Adidas.jpg'], name: 'Adidas'},
-          {imgs: ['../../static/img/test/Nike.jpg'], name: 'Nike'},
-          {imgs: ['../../static/img/test/Pizza Store.jpg'], name: 'Pizza Store'},
-          {imgs: ['../../static/img/test/Red&Red.jpg'], name: 'Red&Red'},
-          {imgs: ['../../static/img/test/RR cars.jpg'], name: 'RR cars'},
-          {imgs: ['../../static/img/test/Trasher Store.jpg'], name: 'Trasher Store'},
-          {imgs: ['../../static/img/test/Watch Store.jpg'], name: 'Watch Store'}
-        ],
         flickityOptions: {
           initialIndex: 0,
           prevNextButtons: true,
@@ -115,9 +69,40 @@
           wrapAround: false,
           setGallerySize: false,
           lazyLoad: true
-
-          // any options from Flickity can be used
         }
+      }
+    },
+    methods: {
+      loadShops () {
+        this.$http.get('http://127.0.0.1:8000/shops/?format=json').then(response => {
+          this.shops = this.shops.concat(response.data)
+        }, response => {
+          this.shops = null
+        })
+      },
+      isFiltered (categories) {
+        let selectedCategories = this.selectedCategories.map(value => value.id)
+        return !selectedCategories.length || categories.some(value => selectedCategories.includes(value))
+      },
+      chooseImage (link) {
+        const fbRegex = /^(http(s)?:\/\/)?(www\.)?(facebook|fb)\.com\/[A-z0-9_\-.]*\/?/
+        const instaRegex = /^(https?:\/\/)?(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)/
+        const vkRegex = /(https?:\/\/)?(www\.)?(vk.com\/)(id\d|[a-zA-z][a-zA-Z0-9_.]{2,})/
+
+        if (fbRegex.exec(link) !== null) {
+          return '../../static/img/links/facebook-link.png'
+        } else if (instaRegex.exec(link) !== null) {
+          return '../../static/img/links/instagram-link.png'
+        } else if (vkRegex.exec(link) !== null) {
+          return '../../static/img/links/vk-link.png'
+        } else {
+          return '../../static/img/links/website-link.png'
+        }
+      }
+    },
+    computed: {
+      selectedCategories () {
+        return this.categories.filter(value => value.selected === true)
       }
     }
   }
@@ -139,7 +124,8 @@
 
     div.items
       width: 100%
-      margin-bottom: 90px
+      margin-bottom: 8.333vh
+      // 90px
       padding-left: calc(7.2vw - 7px)
       padding-right: calc(7.2vw - 7px)
       margin-right: 0
@@ -152,12 +138,13 @@
         /*width: 20.8333vw*/
         width: 100%
         max-width: 396px
-        min-width: 340px
+        min-width: 315px
         height: 650px
-        max-height: 650px
+        max-height: 80vh
+        // 650px
         min-height: 402.14643px
-        margin-top: 89px
-        margin-bottom: 46px
+        margin-top: 8.24vh
+        margin-bottom: 4.26vh
         margin-right: 7px
         margin-left: 7px
         border-radius: 27px
@@ -258,27 +245,31 @@
           height: 20%
           div.title
             height: 40%
-            padding-top: 15px
+            padding-top: 1.388vh
             p.title
               text-align: center
               font-size: 27px
 
           div.links
             height: 60%
-            padding-left: 110px
-            padding-right: 110px
-            padding-bottom: 20px
+            padding-left: 25.25%
+            padding-right: 25.25%
+            padding-bottom: 1.85vh
             display: flex
             justify-content: space-evenly
             a
-              width: 45px
-              height: 45px
+              width: min-content
+              height: min-content
               align-self: flex-end
 
               img
                 opacity: 0.25
-                width: 45px
-                height: 45px
+                max-width: 45px
+                max-height: 45px
+                min-width: 35px
+                min-height: 35px
+                height: 2.84vw
+                width: 2.84vw
                 border: 0
                 filter: grayscale(100%)
 
@@ -299,9 +290,12 @@
       height: 14.35185vh
 
       input[type="button"]
-        max-width: 260px
-        width: 13.541667vw
-        height: 5.5555vh
+        width: 260px
+        //width: 130px
+        //width: 13.541667vw
+        height: 60px //5.5555vh
+        @include media-breakpoint-down(sm)
+          width: 200px
 
 
 </style>
