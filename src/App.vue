@@ -80,7 +80,6 @@
           </a>
         </div>
       </b-modal>
-
       <b-modal id="modal_category" size="lg" hide-header hide-footer centered>
         <p class="tagline">Выберите категории Вашего интернет-магазина</p>
         <div class="form-group">
@@ -392,45 +391,54 @@
   div.modals
 
     #modal_add
+      .modal-dialog
+        max-width: 630px
 
-      .modal-content
-        border-radius: 25px
-        width: 630px
-        height: 285px
+        .modal-content
+          border-radius: 25px
+          max-height: 285px
 
-      .modal-body
-        padding: 0px
-        width: 630px
-        height: 285px
+          p.tagline
+            justify-content: center !important
+            padding-top: 24px
+            padding-bottom: 45px
+            padding-right: 33px
+            padding-left: 33px
+            /*font-size: 1.56vw*/
+            /*line-height: 2.605vw*/
+            font-size: 30px
+            line-height: 45px
+            color: black
+            text-align: center
+            margin-bottom: 0px
+            @include media-breakpoint-down(sm)
+              font-size: 15px
+              line-height: 25px
+              padding-right: 2px
+              padding-left: 2px
 
-      p.tagline
-        justify-content: center !important
-        padding-top: 45px
-        padding-bottom: 45px
-        padding-right: 48px
-        padding-left: 48px
-        /*font-size: 1.56vw*/
-        /*line-height: 2.605vw*/
-        font-size: 30px
-        line-height: 45px
-        color: black
-        text-align: center
-        margin-bottom: 0px
 
-      div.row
-        justify-content: center !important
-        padding-bottom: 41px
-        padding-right: 180px
-        padding-left: 180px
+          div.row
+            justify-content: center !important
+            //padding-bottom: 41px
+            padding-right: 27.8439%
+            padding-left: 27.8439%
+            padding-bottom: 30px
+            @include media-breakpoint-down(xs)
+              padding-right: 15.8439%
+              padding-left: 15.8439%
 
-      img
-        width: 44px
-        height: 44px
-        border: 0
-        padding-right: 0px
+            img
+              width: 64px
+              height: 64px
+              border: 0
+              padding-right: 0px
+              @include media-breakpoint-down(xs)
+                width: 44px
+                height: 44px
 
-      .icon
-        padding-right: 39px
+            .icon
+              padding-right: 39px
 
     #modal_category
 
