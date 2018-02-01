@@ -402,6 +402,9 @@
       .modal-lg
         max-width: 33% //630px / 1920px = 32.8125%
         max-height: 26.388889% //285px / 1080px
+        @include media-breakpoint-down(sm)
+          max-width: 90%
+          max-height: 80%
 
       .modal-content
         border-radius: 25px
@@ -412,21 +415,21 @@
 
       p.tagline
         justify-content: center !important
-        padding-top: 45px
-        padding-bottom: 45px
-        padding-right: 48px
-        padding-left: 48px
+        padding-top: 7.19% // хз, как это получилось
+        padding-bottom: 7.19% // хз, как это получилось
+        padding-right: 7.599819% // 48 / 631.594
+        padding-left: 7.599819% // 48 / 631.594
         /*font-size: 1.56vw*/
         /*line-height: 2.605vw*/
-        font-size: 30px
-        line-height: 45px
+        font-size: 1.875em // 30 / 16
+        line-height: 1.5em // 45 / 30
         color: black
         text-align: center
         margin-bottom: 0px
 
       div.row
         justify-content: center !important
-        padding-bottom: 41px // 41 / 625.93646
+        padding-bottom: 6.55% // не знаю, как это получилось
         padding-right: 27.439694% //180 / 655.984
         padding-left: 27.439694% //180 / 655.984
 
