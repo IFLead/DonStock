@@ -50,7 +50,7 @@
           <a class="icon" href="#">
             <img src="./assets/social-instagram.png" alt="Instagram">
           </a>
-          <a href="#">
+          <a class="icon" href="#">
             <img src="./assets/social-facebook.png" alt="Facebook">
           </a>
         </div>
@@ -75,7 +75,7 @@
           <a class="icon" href="#">
             <img src="./assets/Add_shop_fb.png" alt="Facebook">
           </a>
-          <a href="#">
+          <a class="icon" href="#">
             <img src="./assets/Add_shop_google.png" alt="Google">
           </a>
         </div>
@@ -381,12 +381,18 @@
         justify-content: center !important
 
     img
-      width: 44px
-      height: 44px
+      width: 100%
+      height: 100%
       border: 0
 
     .icon
-      margin-right: 22px
+      margin-right: 1.111111% // 22 / 1980
+      width: 3.2%
+      height: 100%
+
+    .icon:last-child
+      margin-right: 0px
+
 
   div.modals
 
@@ -444,14 +450,15 @@
 
       .modal-lg
         max-width: 908px
+        max-height: 348px
 
       .modal-body
         padding: 0px
 
       .modal-content
         border-radius: 25px
-        width: 908px
-        height: 348px
+        width: 100%
+        height: 100%
 
       p.tagline
         /*justify-content: center !important*/
@@ -477,8 +484,6 @@
           width: 426px
           border-radius: 0px
           background: transparent url("./assets/combobox_category.png") no-repeat right
-          -webkit-appearance: none
-          -moz-appearance: none
           appearance: none
 
         .form-control
@@ -526,14 +531,16 @@
 
       .modal-lg
         max-width: 1200px
+        max-height: 950px
 
       .modal-body
         padding: 0px
 
       .modal-content
         border-radius: 25px
-        width: 1200px
-        height: 950px
+        width: 100%
+        height: 100%
+
 
       .main-left
         float: left
@@ -591,7 +598,7 @@
             padding-bottom: 10px
             outline: none
 
-          input[type="text"]::-webkit-input-placeholder
+          input[type="text"]::-webkit-input-placeholder  //todo: change this
             color: #C5C5C5
 
       .border
@@ -686,8 +693,9 @@
           border-radius: 35px
           background-color: $green
           color: white
-          margin-left: 166px
           font-size: 30px
+          margin-left: 166px
+          margin-bottom: 52px
 
   /*todo: 1) выделение каждого элемента select при наведении курсора */
     /*2) граница каждого элемента select*/
