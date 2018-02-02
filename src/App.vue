@@ -67,7 +67,7 @@
       <!-- Modal Component -->
       <b-modal id="modal_add" size="lg" hide-header hide-footer centered>
 
-        <p class="tagline">Чтобы добавить магазин, необходимо <br> зарегистрироваться в 2 клика</p>
+        <p class="tagline">Чтобы добавить магазин, необходимо зарегистрироваться в 2 клика</p>
         <div class="row justify-content-center">
           <a class="icon" href="http://localhost:8000/auth/login/vk-oauth2">
             <img src="./assets/Add_shop_vk.png" alt="VK">
@@ -390,6 +390,20 @@
       margin-right: 1.111111% // 22 / 1980
       width: 3.2%
       height: 100%
+      @media screen and (max-width: 1200px)
+        width: 4%
+        height: 100%
+      @media screen and (max-width: 992px)
+        width: 8%
+        height: 100%
+        margin-right: 3%
+      @media screen and (max-width: 576px)
+        width: 10%
+        height: 100%
+      @media screen and (max-width: 320px)
+        width: 14%
+        height: 100%
+        margin-right: 4%
 
     .icon:last-child
       margin-right: 0px
@@ -402,9 +416,23 @@
       .modal-lg
         max-width: 33% //630px / 1920px = 32.8125%
         max-height: 26.388889% //285px / 1080px
-        @include media-breakpoint-down(sm)
+        @media screen and (max-width: 1440px)
+          max-width: 40%
+          max-height: 50%
+        @media screen and (max-width: 1200px)
+          max-width: 55%
+          max-height: 50%
+        @media screen and (max-width: 992px)
+          max-width: 70%
+          max-height: 50%
+        @media screen and (max-width: 768px)
+          max-width: 80%
+          max-height: 50%
+          margin: 0 auto
+        @media screen and (max-width: 410px)
           max-width: 90%
-          max-height: 80%
+          max-height: 50%
+          margin: 0 auto
 
       .modal-content
         border-radius: 25px
