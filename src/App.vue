@@ -50,7 +50,7 @@
           <a class="icon" href="#">
             <img src="./assets/social-instagram.png" alt="Instagram">
           </a>
-          <a class="icon" href="#">
+          <a href="#">
             <img src="./assets/social-facebook.png" alt="Facebook">
           </a>
         </div>
@@ -68,14 +68,14 @@
       <b-modal id="modal_add" hide-header hide-footer centered>
 
         <p class="tagline">Чтобы добавить магазин, необходимо <br> зарегистрироваться в 2 клика</p>
-        <div class="row justify-content-center">
+        <div class="row justify-content-between">
           <a class="icon" href="http://localhost:8000/auth/login/vk-oauth2">
             <img src="./assets/Add_shop_vk.png" alt="VK">
           </a>
           <a class="icon" href="#">
             <img src="./assets/Add_shop_fb.png" alt="Facebook">
           </a>
-          <a class="icon" href="#">
+          <a href="#">
             <img src="./assets/Add_shop_google.png" alt="Google">
           </a>
         </div>
@@ -381,18 +381,12 @@
         justify-content: center !important
 
     img
-      width: 100%
-      height: 100%
+      width: 44px
+      height: 44px
       border: 0
 
     .icon
-      margin-right: 1.111111% // 22 / 1980
-      width: 3.2%
-      height: 100%
-
-    .icon:last-child
-      margin-right: 0px
-
+      margin-right: 22px
 
   div.modals
 
@@ -405,7 +399,6 @@
           max-height: 285px
 
           p.tagline
-            justify-content: center !important
             padding-top: 24px
             padding-bottom: 45px
             padding-right: 33px
@@ -425,11 +418,9 @@
 
 
           div.row
-            justify-content: center !important
-            //padding-bottom: 41px
+            padding-bottom: 30px
             padding-right: 27.8439%
             padding-left: 27.8439%
-            padding-bottom: 30px
             @include media-breakpoint-down(xs)
               padding-right: 15.8439%
               padding-left: 15.8439%
@@ -443,22 +434,18 @@
                 width: 44px
                 height: 44px
 
-            .icon
-              padding-right: 39px
-
     #modal_category
 
       .modal-lg
         max-width: 908px
-        max-height: 348px
 
       .modal-body
         padding: 0px
 
       .modal-content
         border-radius: 25px
-        width: 100%
-        height: 100%
+        width: 908px
+        height: 348px
 
       p.tagline
         /*justify-content: center !important*/
@@ -484,6 +471,8 @@
           width: 426px
           border-radius: 0px
           background: transparent url("./assets/combobox_category.png") no-repeat right
+          -webkit-appearance: none
+          -moz-appearance: none
           appearance: none
 
         .form-control
@@ -531,16 +520,14 @@
 
       .modal-lg
         max-width: 1200px
-        max-height: 950px
 
       .modal-body
         padding: 0px
 
       .modal-content
         border-radius: 25px
-        width: 100%
-        height: 100%
-
+        width: 1200px
+        height: 950px
 
       .main-left
         float: left
@@ -598,7 +585,7 @@
             padding-bottom: 10px
             outline: none
 
-          input[type="text"]::-webkit-input-placeholder  //todo: change this
+          input[type="text"]::-webkit-input-placeholder
             color: #C5C5C5
 
       .border
@@ -693,9 +680,8 @@
           border-radius: 35px
           background-color: $green
           color: white
-          font-size: 30px
           margin-left: 166px
-          margin-bottom: 52px
+          font-size: 30px
 
   /*todo: 1) выделение каждого элемента select при наведении курсора */
     /*2) граница каждого элемента select*/
