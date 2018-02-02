@@ -1,34 +1,64 @@
 <template>
-  <div class="cards w-100">
-    <div class="items card-deck justify-content-center">
-      <div v-for="shop in shops" v-show="isFiltered(shop.categories)"
-           class="item-card card gold">
-        <div class="top">
-          <div class="voting">
-            <button class="minus">
-              <img height="44" width="44" src="../assets/minus-vote.svg" alt="plus">
-            </button>
-            <p class="text-center">Голосовать</p>
-            <button class="plus">
-              <img height="44" width="44" src="../assets/plus-vote.svg" alt="plus">
-            </button>
+  <!--<div class="cards w-100">-->
+  <!--<div class="items card-deck justify-content-center">-->
+  <!--<div v-for="shop in shops" v-show="isFiltered(shop.categories)"-->
+  <!--class="item-card card gold">-->
+  <!--<div class="top">-->
+  <!--<div class="voting">-->
+  <!--<button class="minus">-->
+  <!--<img height="44" width="44" src="../assets/minus-vote.svg" alt="plus">-->
+  <!--</button>-->
+  <!--<p class="text-center">Голосовать</p>-->
+  <!--<button class="plus">-->
+  <!--<img height="44" width="44" src="../assets/plus-vote.svg" alt="plus">-->
+  <!--</button>-->
+  <!--</div>-->
+  <!--<div class="rating">-->
+  <!--<p>+13</p>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="img">-->
+  <!--<flickity ref="flickity" :options="flickityOptions">-->
+  <!--<img class="carousel-cell" v-for="photo in shop.photos" v-bind:data-flickity-lazyload="photo.url"-->
+  <!--alt="Main Image">-->
+  <!--&lt;!&ndash;<img class="blurred" v-bind:src="card.path" alt="Blurred image">&ndash;&gt;-->
+  <!--</flickity>-->
+  <!--</div>-->
+  <!--<div class="body">-->
+  <!--<div class="title">-->
+  <!--<p class="title">{{shop.name}}</p>-->
+  <!--</div>-->
+  <!--<div class="links">-->
+  <!--<a target="_blank" :href="shop.link_one">-->
+  <!--<img :src="chooseImage(shop.link_one)" alt="">-->
+  <!--</a>-->
+  <!--<a target="_blank" v-if="shop.link_two" :href="shop.link_two">-->
+  <!--<img :src="chooseImage(shop.link_two)" alt="">-->
+  <!--</a>-->
+  <!--<a target="_blank" v-if="shop.link_three" :href="shop.link_three">-->
+  <!--<img :src="chooseImage(shop.link_three)" alt="">-->
+  <!--</a>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row justify-content-center new">-->
+  <!--<input type="button" value="Показать еще" class="green-btn" v-on:click="loadShops()">-->
+  <!--</div>-->
+  <!--</div>-->
+  <div class="container-fluid items">
+    <div class="row no-gutters">
+      <div class="col-md-6 col-xl-3" v-for="shop in shops" v-show="isFiltered(shop.categories)">
+        <div class="card gold">
+          <div class="wrapper">
+            <flickity ref="flickity" :options="flickityOptions">
+              <img class="card-img-top img-fluid carousel-cell" v-for="photo in shop.photos"
+                   v-bind:data-flickity-lazyload="photo.url" alt="Card image cap">
+            </flickity>
           </div>
-          <div class="rating">
-            <p>+13</p>
-          </div>
-        </div>
-        <div class="img">
-          <flickity ref="flickity" :options="flickityOptions">
-            <img class="carousel-cell" v-for="photo in shop.photos" v-bind:data-flickity-lazyload="photo.url"
-                 alt="Main Image">
-            <!--<img class="blurred" v-bind:src="card.path" alt="Blurred image">-->
-          </flickity>
-        </div>
-        <div class="body">
-          <div class="title">
-            <p class="title">{{shop.name}}</p>
-          </div>
-          <div class="links">
+          <h4 class="card-title text-center">{{shop.name}}</h4>
+          <div class="card-body">
             <a target="_blank" :href="shop.link_one">
               <img :src="chooseImage(shop.link_one)" alt="">
             </a>
@@ -41,9 +71,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row justify-content-center new">
-      <input type="button" value="Показать еще" class="green-btn" v-on:click="loadShops()">
     </div>
   </div>
 </template>
@@ -66,9 +93,9 @@
           initialIndex: 0,
           prevNextButtons: true,
           pageDots: false,
-          wrapAround: false,
           setGallerySize: false,
-          lazyLoad: true
+          lazyLoad: 1,
+          wrapAround: true
         }
       }
     },
@@ -119,8 +146,82 @@
   @import '~bootstrap/scss/bootstrap'
   @import '../style/variables'
 
-  div.cards
-    //padding: 40px
+  div.items
+    padding-left: calc(6.845vw - 7px)
+    padding-right: calc(6.845vw - 7px)
+
+    .gold
+      border: 2px solid #FFD700 !important
+      box-shadow: 0 100px 280px -90px #ffd70066 !important
+
+    .card
+      margin-right: 7px
+      margin-left: 7px
+      border-radius: 27px
+      margin-top: 8.24vh
+      margin-bottom: 4.26vh
+      border: 2px solid transparent
+      overflow: hidden
+      box-shadow: 0 27px 100px -64px rgba(0, 0, 0, 0.5)
+
+      .wrapper
+        position: relative
+        overflow: hidden
+
+        .flickity-enabled
+          position: absolute
+          left: 0
+          top: 0
+          width: 100%
+          height: 100%
+
+          .carousel-cell
+            left: 0
+            width: auto
+            max-width: none
+            height: 100%
+            min-width: 100%
+
+        &:after
+          content: ''
+          display: block
+          padding-top: 130%
+
+      .card-title
+        margin-top: 7px
+        font-size: 27px
+
+      div.card-body
+        /*height: 60%*/
+        padding-left: 27.25%
+        padding-right: 27.25%
+        /*padding-bottom: 1.85vh*/
+        display: flex
+        justify-content: space-evenly
+
+        a
+          width: min-content
+          height: min-content
+          align-self: flex-end
+
+          img
+            opacity: 0.25
+            max-width: 45px
+            max-height: 45px
+            min-width: 35px
+            min-height: 35px
+            height: 2.84vw
+            width: 2.84vw
+            border: 0
+            filter: grayscale(100%)
+
+            &:hover
+              filter: grayscale(0%)
+              opacity: 1
+
+  div.noooo
+    //div.cards
+       //padding: 40px
 
     div.items
       width: 100%
@@ -293,7 +394,8 @@
         width: 260px
         //width: 130px
         //width: 13.541667vw
-        height: 60px //5.5555vh
+        height: 60px
+        //5.5555vh
         @include media-breakpoint-down(sm)
           width: 200px
 

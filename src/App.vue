@@ -68,19 +68,18 @@
       <b-modal id="modal_add" size="lg" hide-header hide-footer centered>
 
         <p class="tagline">Чтобы добавить магазин, необходимо зарегистрироваться в 2 клика</p>
-        <div class="row justify-content-center">
-          <a class="icon" href="http://localhost:8000/auth/login/vk-oauth2">
+        <div class="row justify-content-between">
+          <a href="http://localhost:8000/auth/login/vk-oauth2">
             <img src="./assets/Add_shop_vk.png" alt="VK">
           </a>
-          <a class="icon" href="#">
+          <a href="#">
             <img src="./assets/Add_shop_fb.png" alt="Facebook">
           </a>
-          <a class="icon" href="#">
+          <a href="#">
             <img src="./assets/Add_shop_google.png" alt="Google">
           </a>
         </div>
       </b-modal>
-
       <b-modal id="modal_category" size="lg" hide-header hide-footer centered>
         <p class="tagline">Выберите категории Вашего интернет-магазина</p>
         <div class="form-group">
@@ -413,82 +412,61 @@
 
     #modal_add
 
-      .modal-lg
-        max-width: 33% //630px / 1920px = 32.8125%
-        max-height: 26.388889% //285px / 1080px
-        @media screen and (max-width: 1440px)
-          max-width: 40%
-          max-height: 50%
-        @media screen and (max-width: 1200px)
-          max-width: 55%
-          max-height: 50%
-        @media screen and (max-width: 992px)
-          max-width: 70%
-          max-height: 50%
-        @media screen and (max-width: 768px)
-          max-width: 80%
-          max-height: 50%
-          margin: 0 auto
-        @media screen and (max-width: 410px)
-          max-width: 90%
-          max-height: 50%
-          margin: 0 auto
+      .modal-dialog
+        max-width: 630px
 
-      .modal-content
-        border-radius: 25px
-        width: 100%
-        height: 100%
-      .modal-body
-        padding: 0px
+        .modal-content
+          border-radius: 25px
+          max-height: 285px
 
-      p.tagline
-        justify-content: center !important
-        padding-top: 7.19% // хз, как это получилось
-        padding-bottom: 7.19% // хз, как это получилось
-        padding-right: 7.599819% // 48 / 631.594
-        padding-left: 7.599819% // 48 / 631.594
-        /*font-size: 1.56vw*/
-        /*line-height: 2.605vw*/
-        font-size: 1.875em // 30 / 16
-        line-height: 1.5em // 45 / 30
-        color: black
-        text-align: center
-        margin-bottom: 0px
+          p.tagline
+            padding-top: 24px
+            padding-bottom: 45px
+            padding-right: 33px
+            padding-left: 33px
+            /*font-size: 1.56vw*/
+            /*line-height: 2.605vw*/
+            font-size: 30px
+            line-height: 45px
+            color: black
+            text-align: center
+            margin-bottom: 0px
+            @include media-breakpoint-down(sm)
+              font-size: 15px
+              line-height: 25px
+              padding-right: 2px
+              padding-left: 2px
 
-      div.row
-        justify-content: center !important
-        padding-bottom: 6.55% // не знаю, как это получилось
-        padding-right: 27.439694% //180 / 655.984
-        padding-left: 27.439694% //180 / 655.984
 
-      img
-        width: 100%
-        height: 100%
-        border: 0
-        padding-right: 0px
+          div.row
+            padding-bottom: 30px
+            padding-right: 27.8439%
+            padding-left: 27.8439%
+            @include media-breakpoint-down(xs)
+              padding-right: 15.8439%
+              padding-left: 15.8439%
 
-      .icon
-        margin-right: 39px
-        width: 14.865668% //44 / 295.984
-        height: 100%
-
-      .icon:last-child
-        margin-right: 0
-
+            img
+              width: 64px
+              height: 64px
+              border: 0
+              padding-right: 0px
+              @include media-breakpoint-down(xs)
+                width: 44px
+                height: 44px
 
     #modal_category
 
       .modal-lg
         max-width: 908px
-        max-height: 348px
 
       .modal-body
         padding: 0px
 
       .modal-content
         border-radius: 25px
-        width: 100%
-        height: 100%
+        width: 908px
+        height: 348px
 
       p.tagline
         /*justify-content: center !important*/
