@@ -457,57 +457,59 @@
 
     #modal_category
 
-      .modal-lg
+      .modal-dialog
         max-width: 908px
+        margin: 0 auto
+        @include media-breakpoint-down(md)
+          max-width: 95%
 
       .modal-body
         padding: 0px
 
       .modal-content
         border-radius: 25px
-        width: 908px
-        height: 348px
+        width: 100%
+        max-height: 348px
 
       p.tagline
-        /*justify-content: center !important*/
-        /*font-size: 1.56vw*/
-        /*line-height: 2.605vw*/
-        font-size: 30px
-        line-height: 40px
+        font-size: 1.875em //30px
+        //line-height: 40px
         color: black
         text-align: center
-        padding-top: 51px
-        /*padding-right: 122px*/
-        /*padding-left: 122px*/
-        padding-bottom: 60px
+        padding-top: 5.629139% // 51px / 906 px
+        padding-bottom: 6.622517% // 60px / 906px
         margin-bottom: 0px
+        @include media-breakpoint-down(xs)
+          font-size: 1.3em
 
       .form-group
-        padding-left: 241px
-        padding-right: 241px
+        padding-left: 26.600442% //241px / 906px
+        padding-right: 26.600442% //241px / 906px
         margin: 0px
-        padding-bottom: 67px
+        padding-bottom: 7.3951435% // 67px / 906px
 
         select
-          width: 426px
+          max-width: 426px
           border-radius: 0px
           background: transparent url("./assets/combobox_category.png") no-repeat right
           appearance: none
 
         .form-control
-          width: 426px
+          width: 100%
           height: 39.5px
           padding: 0px
-          font-size: 24px
+          font-size: 1.5em
           color: #C5C5C5
           border-bottom: 1px solid black
           border-top: none
           border-left: none
           border-right: none
+          @include media-breakpoint-down(xs)
+            font-size: 1.3em
 
           option
-            font-size: 24px
-            min-height: 32px
+            font-size: 1em //24px
+            min-height: 1.5em //32px
             border: 1px solid #95989A
             color: black
 
@@ -519,21 +521,38 @@
 
       .back-button
         float: left
-        width: 50px
-        height: 50px
-        padding-left: 82px
-        padding-bottom: 34px
+        //width: 50px
+        // height: 50px
+        padding-left: 9.052% // 82px / 908px = 9.030837%
+        padding-bottom: 3.754% // 34px / 908px = 3.744493%
+
+        img
+          width: 50px
+          height: 50px
+          @include media-breakpoint-down(xs)
+            width: 35px
+            height: 35px
 
       .green-btn
-        width: 260px
+        width: 30.023% // 260px / 908px = 28.634361%
         height: 60px
         border-radius: 35px
         background-color: $green
         color: white
         float: right
-        margin-bottom: 30px
-        margin-right: 31px
-        font-size: 30px
+        margin-bottom: 3.312% // 30px / 908px = 0.03303965
+        margin-right: 3.422% // 31px / 908px = 0.03414097
+        font-size: 1.875em // 30px
+        @include media-breakpoint-down(sm)
+          font-size: 1.5em
+          width: 35%
+        @include media-breakpoint-down(xs)
+          width: 50%
+          height: 45px
+          font-size: 1.3em
+
+
+
 
     #modal_information
 
