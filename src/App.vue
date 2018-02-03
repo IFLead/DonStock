@@ -65,7 +65,7 @@
     </div>
     <div class="modals">
       <!-- Modal Component -->
-      <b-modal id="modal_add" size="lg" hide-header hide-footer centered>
+      <b-modal id="modal_add" hide-header hide-footer centered>
 
         <p class="tagline">Чтобы добавить магазин, необходимо зарегистрироваться в 2 клика</p>
         <div class="row justify-content-between">
@@ -80,7 +80,7 @@
           </a>
         </div>
       </b-modal>
-      <b-modal id="modal_category" size="lg" hide-header hide-footer centered>
+      <b-modal id="modal_category" hide-header hide-footer centered>
         <p class="tagline">Выберите категории Вашего интернет-магазина</p>
         <div class="form-group">
           <select class="form-control" id="change_category">
@@ -101,7 +101,7 @@
         </div>
         <input class="green-btn" type="button" value="Опубликовать">
       </b-modal>
-      <b-modal id="modal_information" size="lg" hide-header hide-footer centered>
+      <b-modal id="modal_information" hide-header hide-footer centered>
         <div class="main-left">
           <div class="main-photo">
             <div class="icon">
