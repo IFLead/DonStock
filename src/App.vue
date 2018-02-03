@@ -529,6 +529,8 @@
             // height: 50px
             padding-left: 9.052% // 82px / 908px = 9.030837%
             padding-bottom: 3.754% // 34px / 908px = 3.744493%
+            @include media-breakpoint-down(md)
+              padding-top: 2%
 
             img
               width: 50px
