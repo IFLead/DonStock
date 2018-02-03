@@ -399,10 +399,7 @@
       @media screen and (max-width: 576px)
         width: 10%
         height: 100%
-      @media screen and (max-width: 320px)
-        width: 14%
-        height: 100%
-        margin-right: 4%
+
 
     .icon:last-child
       margin-right: 0px
@@ -463,13 +460,13 @@
         @include media-breakpoint-down(md)
           max-width: 95%
 
-      .modal-body
-        padding: 0px
+        .modal-body
+          padding: 0px
 
-      .modal-content
-        border-radius: 25px
-        width: 100%
-        max-height: 348px
+        .modal-content
+          border-radius: 25px
+          width: 100%
+          max-height: 348px
 
       p.tagline
         font-size: 1.875em //30px
@@ -479,8 +476,12 @@
         padding-top: 5.629139% // 51px / 906 px
         padding-bottom: 6.622517% // 60px / 906px
         margin-bottom: 0px
+        @include media-breakpoint-down(sm)
+          padding-left: 5%
+          padding-right: 5%
+          font-size: 1.6em
         @include media-breakpoint-down(xs)
-          font-size: 1.3em
+          font-size: 1em
 
       .form-group
         padding-left: 26.600442% //241px / 906px
@@ -505,7 +506,7 @@
           border-left: none
           border-right: none
           @include media-breakpoint-down(xs)
-            font-size: 1.3em
+            font-size: 0.9em
 
           option
             font-size: 1em //24px
@@ -530,8 +531,8 @@
           width: 50px
           height: 50px
           @include media-breakpoint-down(xs)
-            width: 35px
-            height: 35px
+            width: 30px
+            height: 30px
 
       .green-btn
         width: 30.023% // 260px / 908px = 28.634361%
@@ -548,17 +549,18 @@
           width: 35%
         @include media-breakpoint-down(xs)
           width: 50%
-          height: 45px
-          font-size: 1.3em
+          height: 30px
+          font-size: 1em
+
 
 
 
 
     #modal_information
 
-      .modal-lg
+      .modal-dialog
+        margin: 0 auto
         max-width: 1200px
-        max-height: 950px
 
       .modal-body
         padding: 0px
@@ -566,8 +568,7 @@
       .modal-content
         border-radius: 25px
         width: 100%
-        height: 100%
-
+        max-height: 950px
 
       .main-left
         float: left
