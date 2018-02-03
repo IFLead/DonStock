@@ -488,6 +488,9 @@
         padding-right: 26.600442% //241px / 906px
         margin: 0px
         padding-bottom: 7.3951435% // 67px / 906px
+        @include media-breakpoint-down(xs)
+          padding-left: 15%
+          padding-right: 15%
 
         select
           max-width: 426px
