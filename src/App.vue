@@ -119,9 +119,15 @@
             <input type="text" placeholder="Название магазина">
           </div>
           <div class="description">
-            <div class="description-lable"><p class="tagline">Описание</p></div>
-            <input type="text" placeholder="Введите описание">
+            <!--<div class="description-lable"><p class="tagline">Описание</p></div>-->
+            <!--<input type="text" placeholder="Введите описание">-->
             <!--<textarea></textarea>-->
+            <form>
+              <div class="form-group">
+                <!--<label for="desc">Описание</label>-->
+                <textarea class="form-control" id="desc" placeholder="Описание магазина"></textarea>
+              </div>
+            </form>
           </div>
         </div>
         <!--<div class="hidden-xs">-->
@@ -189,7 +195,7 @@
             </div>
           </div>
           <div class="shop-links">
-            <p class="tagline">Ссылка на Ваш магазин</p>
+            <p class="tagline">Ссылки на Ваш магазин</p>
             <input type="text" placeholder="Ссылка">
             <input type="text" placeholder="Ссылка">
             <input type="text" placeholder="Ссылка">
@@ -674,6 +680,7 @@
                     margin-top: 5px
                   @include media-breakpoint-down(xs)
                     width: 225%
+                    margin-top: 0px
 
                   label
                     color: #C5C5C5
@@ -696,10 +703,12 @@
                   width: 225%
                   margin-right: 32.41%
                   margin-left: 32.41%
-                  margin-top: 35%
+                  margin-top: 30%
 
                 .gen-lable
                   text-align: center
+                  @include media-breakpoint-down(xs)
+                    padding-bottom: 10px
 
                   .tagline
                     /*justify-content: center !important*/
@@ -730,6 +739,7 @@
                   font-size: 24px
                   line-height: 32px
                   padding-bottom: 10px
+                  padding-left: 10px
                   outline: none
                   @media screen and (max-width: 1500px)
                     font-size: 20px
@@ -744,6 +754,49 @@
                   color: #C5C5C5
 
               .description
+                width: 100%
+                margin-top: 11%
+                @include media-breakpoint-down(xs)
+                  width: 225%
+                  margin-right: 32.41%
+                  margin-left: 32.41%
+                  margin-top: 20%
+
+              .form-group
+                margin-bottom: 0px
+                height: 133px
+                @media screen and (max-width: 1500px)
+                  height: 112px
+                @media screen and (max-width: 1300px)
+                  height: 102px
+                @include media-breakpoint-down(lg)
+                  height: 111px
+                @include media-breakpoint-down(md)
+                  height: 102px
+                @include media-breakpoint-down(sm)
+                  height: 95px
+
+                .form-control
+                  height: 100%
+                  font-size: 24px
+                  line-height: 32px
+                  border: 1px solid black
+                  @media screen and (max-width: 1500px)
+                    font-size: 20px
+                    line-height: 28px
+                  @media screen and (max-width: 1300px)
+                    font-size: 16px
+                  @include media-breakpoint-down(xs)
+                    font-size: 14px
+
+                .form-control:focus::-webkit-input-placeholder
+                  color: transparent
+                  transition: opacity 0.3s ease
+
+                .form-control::-webkit-input-placeholder
+                  color: #C5C5C5
+
+              /*.description
                 width: 100%
                 height: 100% // 116.5px
                 margin-top: 15.325% // 63px
@@ -805,7 +858,7 @@
                     font-size: 14px
 
                 input[type="text"]::-webkit-input-placeholder  //todo: change this
-                  color: #C5C5C5
+                  color: #C5C5C5*/
 
             .border
               float: left
@@ -851,7 +904,7 @@
                 @include media-breakpoint-down(sm)
                   margin-bottom: -180px
                 @include media-breakpoint-down(xs)
-                  margin-top: 450px
+                  margin-top: 470px
                   margin-bottom: 0
                   margin-left: 32.41%
                   margin-right: 32.41%
@@ -935,7 +988,7 @@
                 margin-bottom: 12.21% // 52px
                 @include media-breakpoint-down(xs)
                   width: 220%
-                  margin-top: 70px
+                  margin-top: 65px
                   margin-bottom: 0
                   margin-left: 32.41%
                   margin-right: 32.41%
