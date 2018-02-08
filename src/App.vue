@@ -94,6 +94,7 @@
             <option><p>Одежда</p></option>
           </select>
         </div>
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>-->
         <div class="back-button">
           <a href="#">
             <img src="./assets/back_button_modal.png" alt="Назад">
@@ -104,19 +105,30 @@
       <b-modal id="modal_information" hide-header hide-footer centered>
         <div class="main-left">
           <div class="main-photo">
-            <div class="icon">
-              <img src="./assets/photo-camera.png" alt="Главное фото">
+            <div class="photo">
+              <div class="icon">
+                <img src="./assets/photo-camera.png" alt="Главное фото">
+              </div>
+            </div>
+            <div class="label-photo">
+              <label>Главное фото</label>
             </div>
           </div>
-          <label>Главное фото</label>
           <div class="general-information">
             <div class="gen-lable"><p class="tagline">Основная информация</p></div>
             <input type="text" placeholder="Название магазина">
           </div>
+          <div class="description">
+            <div class="description-lable"><p class="tagline">Описание</p></div>
+            <input type="text" placeholder="Введите описание">
+            <!--<textarea></textarea>-->
+          </div>
         </div>
+        <!--<div class="hidden-xs">-->
         <div class="border">
           <img src="./assets/border.png" alt="Граница">
         </div>
+        <!--</div>-->
         <div class="main-right">
           <div class="product">
             <div class="production-photos">
@@ -172,15 +184,17 @@
                 </div>
               </div>
             </div>
-            <label>Продукция</label>
-            <div class="shop-links">
-              <p class="tagline">Ссылка на Ваш магазин</p>
-              <input type="text" placeholder="Ссылка">
-              <input type="text" placeholder="Ссылка">
-              <input type="text" placeholder="Ссылка">
+            <div class="product-label">
+              <label>Продукция</label>
             </div>
-            <input class="green-btn" type="button" value="Дальше">
           </div>
+          <div class="shop-links">
+            <p class="tagline">Ссылка на Ваш магазин</p>
+            <input type="text" placeholder="Ссылка">
+            <input type="text" placeholder="Ссылка">
+            <input type="text" placeholder="Ссылка">
+          </div>
+          <input class="green-btn" type="button" value="Дальше">
         </div>
       </b-modal>
     </div>
@@ -429,10 +443,10 @@
             text-align: center
             margin-bottom: 0px
             @include media-breakpoint-down(sm)
-              font-size: 15px
-              line-height: 25px
-              padding-right: 2px
-              padding-left: 2px
+              font-size: 20px
+              line-height: 30px
+              padding-right: 5%
+              padding-left: 5%
 
 
           div.row
@@ -460,102 +474,102 @@
         @include media-breakpoint-down(md)
           max-width: 95%
 
-        .modal-body
-          padding: 0px
-
         .modal-content
           border-radius: 25px
           width: 100%
           max-height: 348px
 
-          p.tagline
-            font-size: 1.875em //30px
-            //line-height: 40px
-            color: black
-            text-align: center
-            padding-top: 5.629139% // 51px / 906 px
-            padding-bottom: 6.622517% // 60px / 906px
-            margin-bottom: 0px
-            @include media-breakpoint-down(sm)
-              padding-left: 5%
-              padding-right: 5%
-              font-size: 1.6em
-            @include media-breakpoint-down(xs)
-              font-size: 1em
+          .modal-body
+            padding: 0px
 
-          .form-group
-            padding-left: 26.600442% //241px / 906px
-            padding-right: 26.600442% //241px / 906px
-            margin: 0px
-            padding-bottom: 7.3951435% // 67px / 906px
-            @include media-breakpoint-down(xs)
-              padding-left: 15%
-              padding-right: 15%
-
-            select
-              max-width: 426px
-              border-radius: 0px
-              background: transparent url("./assets/combobox_category.png") no-repeat right
-              appearance: none
-
-            .form-control
-              width: 100%
-              height: 39.5px
-              padding: 0px
-              font-size: 1.5em
-              color: #C5C5C5
-              border-bottom: 1px solid black
-              border-top: none
-              border-left: none
-              border-right: none
+            p.tagline
+              font-size: 1.875em //30px
+              //line-height: 40px
+              color: black
+              text-align: center
+              padding-top: 5.629139% // 51px / 906 px
+              padding-bottom: 6.622517% // 60px / 906px
+              margin-bottom: 0px
+              @include media-breakpoint-down(sm)
+                padding-left: 5%
+                padding-right: 5%
+                font-size: 1.6em
               @include media-breakpoint-down(xs)
-                font-size: 0.9em
+                font-size: 1em
 
-              option
-                font-size: 1em //24px
-                min-height: 1.5em //32px
-                border: 1px solid #95989A
-                color: black
-
-              option:checked
-                background-color: #1DB954
-
-              option:hover
-                background-color: #1DB954
-
-          .back-button
-            float: left
-            //width: 50px
-            // height: 50px
-            padding-left: 9.052% // 82px / 908px = 9.030837%
-            padding-bottom: 3.754% // 34px / 908px = 3.744493%
-            @include media-breakpoint-down(md)
-              padding-top: 2%
-
-            img
-              width: 50px
-              height: 50px
+            .form-group
+              padding-left: 26.600442% //241px / 906px
+              padding-right: 26.600442% //241px / 906px
+              margin: 0px
+              padding-bottom: 7.3951435% // 67px / 906px
               @include media-breakpoint-down(xs)
-                width: 30px
+                padding-left: 15%
+                padding-right: 15%
+
+              select
+                max-width: 426px
+                border-radius: 0px
+                background: transparent url("./assets/combobox_category.png") no-repeat right
+                appearance: none
+
+              .form-control
+                width: 100%
+                height: 39.5px
+                padding: 0px
+                font-size: 1.5em
+                color: #C5C5C5
+                border-bottom: 1px solid black
+                border-top: none
+                border-left: none
+                border-right: none
+                @include media-breakpoint-down(xs)
+                  font-size: 0.9em
+
+                option
+                  font-size: 1em //24px
+                  min-height: 1.5em //32px
+                  border: 1px solid #95989A
+                  color: black
+
+                option:checked
+                  background-color: #1DB954
+
+                option:hover
+                  background-color: #1DB954
+
+            .back-button
+              float: left
+              //width: 50px
+              // height: 50px
+              padding-left: 9.052% // 82px / 908px = 9.030837%
+              padding-bottom: 3.754% // 34px / 908px = 3.744493%
+              @include media-breakpoint-down(md)
+                padding-top: 2%
+
+              img
+                width: 50px
+                height: 50px
+                @include media-breakpoint-down(xs)
+                  width: 30px
+                  height: 30px
+
+            .green-btn
+              width: 30.023% // 260px / 908px = 28.634361%
+              height: 60px
+              border-radius: 35px
+              background-color: $green
+              color: white
+              float: right
+              margin-bottom: 3.312% // 30px / 908px = 0.03303965
+              margin-right: 3.422% // 31px / 908px = 0.03414097
+              font-size: 1.875em // 30px
+              @include media-breakpoint-down(sm)
+                font-size: 1.5em
+                width: 35%
+              @include media-breakpoint-down(xs)
+                width: 50%
                 height: 30px
-
-          .green-btn
-            width: 30.023% // 260px / 908px = 28.634361%
-            height: 60px
-            border-radius: 35px
-            background-color: $green
-            color: white
-            float: right
-            margin-bottom: 3.312% // 30px / 908px = 0.03303965
-            margin-right: 3.422% // 31px / 908px = 0.03414097
-            font-size: 1.875em // 30px
-            @include media-breakpoint-down(sm)
-              font-size: 1.5em
-              width: 35%
-            @include media-breakpoint-down(xs)
-              width: 50%
-              height: 30px
-              font-size: 1em
+                font-size: 1em
 
 
 
@@ -565,170 +579,441 @@
 
       .modal-dialog
         margin: 0 auto
-        max-width: 1200px
+        //max-width: 1200px
+        max-width: 62.5% // 1200px / 1920px
+        @include media-breakpoint-down(lg)
+          max-width: 85%
+        @include media-breakpoint-down(md)
+          max-width: 95%
+        @include media-breakpoint-down(sm)
+          max-width: 98%
+        @include media-breakpoint-down(xs)
+          max-width: 70%
+        @media screen and (max-width: 450px)
+          max-width: 90%
 
-      .modal-body
-        padding: 0px
-
-      .modal-content
-        border-radius: 25px
-        width: 100%
-        max-height: 950px
-
-      .main-left
-        float: left
-
-        .main-photo
-          width: 414px
-          height: 328px
+        .modal-content
           border-radius: 25px
-          border: 1px solid #E2E2E2
-          margin-top: 76px
-          margin-left: 91px
+          width: 100%
+          //max-height: 950px
+          max-height: 87.962963% // 950px / 1080px
 
-          div.icon
-            width: 84px
-            height: 84px
-            padding-left: 165px
-            padding-top: 122px
+          .modal-body
+            padding: 0px
 
-        label
-          color: #C5C5C5
-          font-size: 24px
-          line-height: 32px
-          padding-top: 20px
-          padding-left: 222px
-          margin-bottom: 0px
+            .main-left
+              float: left
+              width:  34.5% // 414px
+              margin-top: 6.333333%  // 76px / 1200px = 6.333333%
+              margin-bottom: 12.666667% // 152px / 1200px = 12%
+              margin-left: 7.583333% // 91px / 1200px = 7.583333%
+              margin-right: 6.75% // 81px / 1200px = 6.75%
+              @include media-breakpoint-down(xs)
+                margin-top: 0
+                margin-bottom: 0
+                margin-left: 0
+                margin-right: 0
 
-        .general-information
-          width: 426px
-          height: 116.5px
-          margin-top: 52px
-          margin-left: 91px
 
-          .gen-lable
-            margin-left: 51px
+              .main-photo
+                width: 100%
+                height: 380px
+                @media screen and (max-width: 1500px)
+                  margin-bottom: -90px
+                @media screen and (max-width: 1300px)
+                  margin-bottom: -150px
+                @include media-breakpoint-down(sm)
+                  margin-bottom: -180px
+                @include media-breakpoint-down(xs)
+                  margin-left: 32.41%
+                  margin-right: 32.41%
+                  margin-top: 20px
+                  margin-bottom: 0
+                  height: 190px
 
-            .tagline
-              /*justify-content: center !important*/
-              font-size: 30px
-              line-height: 40px
-              color: black
-              padding-bottom: 35px
-              margin-bottom: 0px
+                div.photo
+                  display: flex
+                  width:  100%
+                  height: 86.315789% // 328px / 380px
+                  border-radius: 25px
+                  border: 1px solid #E2E2E2
+                  @media screen and (max-width: 1500px)
+                    height: 70%
+                  @media screen and (max-width: 1300px)
+                    height: 55%
+                  @include media-breakpoint-down(sm)
+                    height: 47%
+                  @include media-breakpoint-down(xs)
+                    width:  225%
+                    height: 90%
 
-            p
-              margin-bottom: 0px
 
-          input[type="text"]
-            width: 426px
-            border-top: none
-            border-right: none
-            border-left: none
-            border-bottom: 1px solid black
-            font-size: 24px
-            line-height: 32px
-            padding-bottom: 10px
-            outline: none
+                  div.icon
+                    margin: auto
+                    width: 84px
+                    height: 84px
+                    //margin-left: 39.855072% // 165px / 414px
+                    //margin-top: 37.195122% // 122px / 328px
+                    //margin-bottom: 37.195122% // 122px / 328px
+                    @media screen and (max-width: 1300px)
+                      width: 50px
+                      height: 50px
 
-          input[type="text"]::-webkit-input-placeholder  //todo: change this
-            color: #C5C5C5
+                    img
+                      width: 100%
+                      height: 100%
 
-      .border
-        float: left
-        margin-left: 81px
-        margin-right: 95px
-        margin-top: 18px
+                .label-photo
+                  margin: 0 auto
+                  margin-top: 20px
+                  width: 160px
+                  text-align: center
+                  @media screen and (max-width: 1500px)
+                    margin-top: 10px
+                  @media screen and (max-width: 1300px)
+                    margin-top: 5px
+                  @include media-breakpoint-down(xs)
+                    width: 225%
 
-      .main-right
-        float: left
+                  label
+                    color: #C5C5C5
+                    font-size: 24px
+                    line-height: 32px
+                    //padding-top: 20px
+                    //padding-left: 222px
+                    margin-bottom: 0px
+                    @media screen and (max-width: 1500px)
+                      font-size: 20px
+                    @media screen and (max-width: 1300px)
+                      font-size: 16px
 
-        .product
-          margin-top: 76px
-          width: 414.06px
+              .general-information
+                width: 100%
+                height: 100% // 116.5px
+                margin-top: 12.165% // 52px
+                //margin-left: 91px
+                @include media-breakpoint-down(xs)
+                  width: 225%
+                  margin-right: 32.41%
+                  margin-left: 32.41%
+                  margin-top: 35%
 
-          .production-photos
-            width: 414.06px
-            height: 328px
+                .gen-lable
+                  text-align: center
 
-            .row-photos
-              margin-bottom: 29px
-              height: 90.33px
+                  .tagline
+                    /*justify-content: center !important*/
+                    font-size: 30px
+                    line-height: 40px
+                    color: black
+                    padding-bottom: 8.515% // 35px
+                    margin-bottom: 0px
+                    @media screen and (max-width: 1500px)
+                      font-size: 23px
+                    @media screen and (max-width: 1300px)
+                      font-size: 20px
+                    @include media-breakpoint-down(sm)
+                      font-size: 17px
+                      line-height: 25px
+                    @include media-breakpoint-down(xs)
+                      padding-bottom: 1%
 
-              .photo
-                float: left
-                width: 118.02px
-                height: 90.33px
-                border-radius: 25px
-                border: 1px solid #E2E2E2
-                margin-right: 30px
+                  p
+                    margin-bottom: 0px
 
-                .icon
-                  padding-left: 47.44px
-                  padding-top: 30.2px
+                input[type="text"]
+                  width: 100%
+                  border-top: none
+                  border-right: none
+                  border-left: none
+                  border-bottom: 1px solid black
+                  font-size: 24px
+                  line-height: 32px
+                  padding-bottom: 10px
+                  outline: none
+                  @media screen and (max-width: 1500px)
+                    font-size: 20px
+                    padding-bottom: 3px
+                  @media screen and (max-width: 1300px)
+                    font-size: 16px
+                    padding-bottom: 0px
+                  @include media-breakpoint-down(xs)
+                    font-size: 14px
 
-                  img
-                    width: 23.13px
-                    height: 23.13px
+                input[type="text"]::-webkit-input-placeholder  //todo: change this
+                  color: #C5C5C5
 
-              .photo:last-child
-                margin-right: 0px
+              .description
+                width: 100%
+                height: 100% // 116.5px
+                margin-top: 15.325% // 63px
+                //margin-left: 91px
+                @media screen and (max-width: 1600px)
+                  margin-top: 14.3%
+                @media screen and (max-width: 1400px)
+                  margin-top: 13.4%
+                @media screen and (max-width: 1300px)
+                  margin-top: 12.3%
+                @include media-breakpoint-down(sm)
+                  margin-top: 17.5%
+                @include media-breakpoint-down(xs)
+                  width: 225%
+                  margin-right: 32.41%
+                  margin-left: 32.41%
+                  margin-top: 20%
 
-        label
-          color: #C5C5C5
-          font-size: 24px
-          line-height: 32px
-          padding-top: 20px
-          padding-left: 147px
-          margin-bottom: 0px
 
-        .shop-links
-          width: 426px
-          height: 289px
-          margin-top: 52px
-          margin-bottom: 52px
+                .description-lable
+                  text-align: center
 
-          .tagline
-            /*justify-content: center !important*/
-            font-size: 30px
-            line-height: 40px
-            color: black
-            padding-bottom: 35px
-            margin-bottom: 0px
-            text-align: center
+                  .tagline
+                    font-size: 30px
+                    line-height: 40px
+                    color: black
+                    padding-bottom: 8.515% // 35px
+                    margin-bottom: 0px
+                    @media screen and (max-width: 1500px)
+                      font-size: 23px
+                    @media screen and (max-width: 1300px)
+                      font-size: 20px
+                    @include media-breakpoint-down(sm)
+                      font-size: 17px
+                      line-height: 25px
+                    @include media-breakpoint-down(xs)
+                      padding-bottom: 1%
 
-          p
-            margin-bottom: 0px
+                  p
+                    margin-bottom: 0px
 
-          input[type="text"]
-            width: 426px
-            border-top: none
-            border-right: none
-            border-left: none
-            border-bottom: 1px solid black
-            font-size: 24px
-            line-height: 32px
-            padding-bottom: 10px
-            outline: none
-            margin-bottom: 46px
-            background: transparent url("./assets/link.png") no-repeat right
-            background-position: 385px
+                input[type="text"]
+                  width: 100%
+                  border-top: none
+                  border-right: none
+                  border-left: none
+                  border-bottom: 1px solid black
+                  font-size: 24px
+                  line-height: 32px
+                  padding-bottom: 10px
+                  outline: none
+                  @media screen and (max-width: 1500px)
+                    font-size: 20px
+                    padding-bottom: 3px
+                  @media screen and (max-width: 1300px)
+                    font-size: 16px
+                    padding-bottom: 0px
+                  @include media-breakpoint-down(xs)
+                    font-size: 14px
 
-          input[type="text"]::-webkit-input-placeholder
-            color: #C5C5C5
+                input[type="text"]::-webkit-input-placeholder  //todo: change this
+                  color: #C5C5C5
 
-          input[type="text"]:last-child
-            margin-bottom: 0px
+            .border
+              float: left
+              //margin-left: 6.75% // 81px / 1200px
+              //margin-right: 7.916667% // 95px / 1200px
+              margin-top: 18px
+              @media screen and (max-width: 1500px)
+                height: 700px
+              @media screen and (max-width: 1300px)
+                height: 600px
+              @include media-breakpoint-down(sm)
+                height: 480px
+              @include media-breakpoint-down(xs)
+                display: none
 
-        .green-btn
-          width: 260px
-          height: 60px
-          border-radius: 35px
-          background-color: $green
-          color: white
-          font-size: 30px
-          margin-left: 166px
-          margin-bottom: 52px
+              img
+                height: 100%
+
+            .main-right
+              float: left
+              width: 35.5%
+              //width: 426px
+              margin-left: 7.916667% // 95px / 1200px = 7.916667%
+              margin-right: 7% // 84px / 1200px = 7%
+              margin-top: 6.333333% // 76px / 1200px = 6.333333%
+              margin-bottom:  3.333333% // 40px / 1200px = 3.333333%
+              @include media-breakpoint-down(xs)
+                float: none
+                margin-left: 0
+                margin-right: 0
+                margin-top: 0
+                margin-bottom: 0
+
+
+              .product
+                //margin-top: 76px
+                width: 97.197183% // 414.06px / 426px
+                height: 380px
+                @media screen and (max-width: 1500px)
+                  margin-bottom: -90px
+                @media screen and (max-width: 1300px)
+                  margin-bottom: -150px
+                @include media-breakpoint-down(sm)
+                  margin-bottom: -180px
+                @include media-breakpoint-down(xs)
+                  margin-top: 450px
+                  margin-bottom: 0
+                  margin-left: 32.41%
+                  margin-right: 32.41%
+                  height: 170px
+                  width: 220%
+
+                .production-photos
+                  width: 100.3% // 414.06px
+                  height: 86.315789% // 328px / 380px
+                  @media screen and (max-width: 1500px)
+                    height: 70%
+                  @media screen and (max-width: 1300px)
+                    height: 55%
+                  @include media-breakpoint-down(sm)
+                    height: 46%
+                  @include media-breakpoint-down(xs)
+                    height: 100%
+
+                  .row-photos
+                    margin-bottom: 7% // 29px
+                    height: 27.54% // 29px
+
+                    div.photo
+                      display: flex
+                      float: left
+                      width: 28.5% // 118.02px
+                      height: 100% // 90.33px
+                      border-radius: 25px
+                      border: 1px solid #E2E2E2
+                      margin-right: 7.24% // 30px
+                      @media screen and (max-width: 1300px)
+                        border-radius: 15px
+                      @include media-breakpoint-down(sm)
+                        border-radius: 10px
+
+
+                      .icon
+                        // margin-left: 40.874%
+                        // margin-right: 40.874%
+                        //margin-top: 26.016%
+                        //margin-bottom: 26.016%
+                        //margin: 0 auto
+                        margin: auto
+                        width: 23.13px // 19.82%
+                        height: 23.13px // 19.82%
+
+                        img
+                          width: 100%
+                          height: 100%
+
+                    .photo:last-child
+                      margin-right: 0px
+
+                .product-label
+                  margin: 0 auto
+                  margin-top: 20px
+                  width: 40%
+                  text-align: center
+                  @media screen and (max-width: 1500px)
+                    margin-top: 10px
+                  @media screen and (max-width: 1300px)
+                    margin-top: 5px
+
+                  label
+                    color: #C5C5C5
+                    font-size: 24px
+                    line-height: 32px
+                    //padding-top: 20px
+                    //padding-left: 222px
+                    margin-bottom: 0px
+                    @media screen and (max-width: 1500px)
+                      font-size: 20px
+                    @media screen and (max-width: 1300px)
+                      font-size: 16px
+
+
+              .shop-links
+                width: 100% // 426px
+                //height: 300px // 289px
+                margin-top: 12.21% // 52px
+                margin-bottom: 12.21% // 52px
+                @include media-breakpoint-down(xs)
+                  width: 220%
+                  margin-top: 70px
+                  margin-bottom: 0
+                  margin-left: 32.41%
+                  margin-right: 32.41%
+
+                .tagline
+                  /*justify-content: center !important*/
+                  font-size: 30px
+                  line-height: 40px
+                  color: black
+                  padding-bottom: 8.22% // 35px
+                  margin-bottom: 0px
+                  text-align: center
+                  @media screen and (max-width: 1500px)
+                    font-size: 23px
+                  @media screen and (max-width: 1300px)
+                    font-size: 20px
+                  @include media-breakpoint-down(sm)
+                    font-size: 17px
+                    line-height: 25px
+
+                p
+                  margin-bottom: 0px
+
+                input[type="text"]
+                  width: 100% // 426px
+                  border-top: none
+                  border-right: none
+                  border-left: none
+                  border-bottom: 1px solid black
+                  font-size: 24px
+                  line-height: 32px
+                  padding-bottom: 10px
+                  outline: none
+                  margin-bottom: 10.8% // 46px
+                  background: transparent url("./assets/link.png") no-repeat right
+                  background-position: 98% // 385px
+                  @media screen and (max-width: 1500px)
+                    font-size: 20px
+                    padding-bottom: 3px
+                  @media screen and (max-width: 1300px)
+                    font-size: 16px
+                    padding-bottom: 0px
+                    background-size: 20px
+                  @include media-breakpoint-down(xs)
+                    font-size: 14px
+                    background-size: 18px
+
+                input[type="text"]::-webkit-input-placeholder
+                  color: #C5C5C5
+
+                input[type="text"]:last-child
+                  margin-bottom: 0px
+
+              .green-btn
+                width: 61.032864% // 260px
+                height: 60px
+                border-radius: 35px
+                background-color: $green
+                color: white
+                font-size: 30px
+                margin-left: 37.945% // 166px
+                //margin-bottom: 52px
+                @media screen and (max-width: 1500px)
+                  font-size: 24px
+                  height: 50px
+                @media screen and (max-width: 1300px)
+                  font-size: 20px
+                  height: 45px
+                @include media-breakpoint-down(sm)
+                  font-size: 18px
+                @include media-breakpoint-down(xs)
+                  margin-top: 20px
+                  margin-left: 160%
+                  margin-right: 32%
+                  margin-bottom: 20px
+                  font-size: 17px
+                  width: 100%
+                  height: 100%
 
   /*todo: 1) выделение каждого элемента select при наведении курсора */
     /*2) граница каждого элемента select*/
