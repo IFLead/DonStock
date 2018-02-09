@@ -220,6 +220,104 @@
     mounted () {
       this.$http.get('http://127.0.0.1:8000/shops/?format=json').then((response) => {
         this.shops = response.data
+      }, response => {
+        this.shops = [{
+          'id': 2,
+          'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image7.jpg'}],
+          'name': 'Pizza Store',
+          'link_one': 'https://vk.com/dadoem',
+          'link_two': 'https://www.instagram.com/lisapeachy',
+          'link_three': 'https://www.facebook.com/STPeachy/',
+          'likes': 0,
+          'dislikes': 0,
+          'rating': '0.00',
+          'user': 1,
+          'categories': [3]
+        }, {
+          'id': 3,
+          'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image10.jpg'}],
+          'name': 'Adidas',
+          'link_one': 'https://vk.com/dadoem',
+          'link_two': 'https://www.instagram.com/nanisday/',
+          'link_three': 'https://www.facebook.com/STPeachy/',
+          'likes': 0,
+          'dislikes': 0,
+          'rating': '0.00',
+          'user': 1,
+          'categories': [5, 7]
+        }, {
+          'id': 4,
+          'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image12.jpg'}],
+          'name': 'RR Cars',
+          'link_one': 'https://vk.com/ayy_memes',
+          'link_two': 'https://www.instagram.com/zanudas/',
+          'link_three': 'https://www.facebook.com/mmsuchar',
+          'likes': 0,
+          'dislikes': 0,
+          'rating': '0.00',
+          'user': 1,
+          'categories': [2, 3]
+        }, {
+          'id': 5,
+          'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image14.jpg'}],
+          'name': 'Thrasher Store',
+          'link_one': 'https://vk.com/dadoem',
+          'link_two': '',
+          'link_three': '',
+          'likes': 0,
+          'dislikes': 0,
+          'rating': '0.00',
+          'user': 1,
+          'categories': [1]
+        }, {
+          'id': 6,
+          'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image8.jpg'}],
+          'name': 'Watch Store',
+          'link_one': 'https://vk.com/ayy_memes',
+          'link_two': 'https://www.instagram.com/zanudas/',
+          'link_three': 'https://www.facebook.com/STPeachy/',
+          'likes': 0,
+          'dislikes': 0,
+          'rating': '0.00',
+          'user': 1,
+          'categories': [2, 3, 6]
+        }, {
+          'id': 7,
+          'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image11.jpg'}],
+          'name': 'Nike',
+          'link_one': 'https://vk.com/dadoem',
+          'link_two': 'https://www.instagram.com/lisapeachy',
+          'link_three': 'https://www.facebook.com/mmsuchar',
+          'likes': 0,
+          'dislikes': 0,
+          'rating': '0.00',
+          'user': 1,
+          'categories': [1, 3, 5, 6, 7]
+        }, {
+          'id': 8,
+          'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image13.jpg'}, {'url': 'http://localhost:8000/media/shops-images/2018/01/13/Gucci-shop.jpg'}],
+          'name': 'Gucci',
+          'link_one': 'https://vk.com/ayy_memes',
+          'link_two': 'https://www.instagram.com/lisapeachy',
+          'link_three': 'https://www.facebook.com/STPeachy/',
+          'likes': 0,
+          'dislikes': 0,
+          'rating': '0.00',
+          'user': 1,
+          'categories': [1, 6]
+        }, {
+          'id': 9,
+          'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image15.jpg'}],
+          'name': 'Red&Red',
+          'link_one': 'https://vk.com/ayy_memes',
+          'link_two': 'https://www.instagram.com/zanudas/',
+          'link_three': '',
+          'likes': 0,
+          'dislikes': 0,
+          'rating': '0.00',
+          'user': 1,
+          'categories': [1]
+        }]
       })
     },
     data () {
@@ -406,7 +504,8 @@
       border: 0
 
     .icon
-      margin-right: 1.111111% // 22 / 1980
+      margin-right: 1.111111%
+      // 22 / 1980
       width: 3.2%
       height: 100%
       @media screen and (max-width: 1200px)
@@ -420,10 +519,8 @@
         width: 10%
         height: 100%
 
-
     .icon:last-child
       margin-right: 0px
-
 
   div.modals
 
@@ -453,7 +550,6 @@
               line-height: 30px
               padding-right: 5%
               padding-left: 5%
-
 
           div.row
             padding-bottom: 30px
@@ -576,10 +672,6 @@
                 width: 50%
                 height: 30px
                 font-size: 1em
-
-
-
-
 
     #modal_information
 

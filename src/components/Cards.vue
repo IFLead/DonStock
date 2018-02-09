@@ -101,11 +101,12 @@
     },
     methods: {
       loadShops () {
-        this.$http.get('http://127.0.0.1:8000/shops/?format=json').then(response => {
-          this.shops = this.shops.concat(response.data)
-        }, response => {
-          this.shops = null
-        })
+
+        // this.$http.get('http://127.0.0.1:8000/shops/?format=json').then(response => {
+        //   this.shops = this.shops.concat(response.data)
+        // }, response => {
+        //
+        // })
       },
       isFiltered (categories) {
         let selectedCategories = this.selectedCategories.map(value => value.id)

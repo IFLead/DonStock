@@ -9,14 +9,16 @@
 
       </flickity>
     </div>
-    <div class="container-fluid" v-show="categories.some(value => value.selected)">
+    <div class="container-fluid" v-show="true ||categories.some(value => value.selected)">
       <div class="row">
         <div class="pins col-10">
-          <input type="button" v-for="category in categories" v-if="category.selected" :value="category.name+' ×'"
-                 class="green-btn" v-on:click="category.selected = false">
+          <flickity ref="flickity" :options="pinsFlickityOptions">
+            <input type="button" v-for="category in categories" v-show="true || category.selected" :value="category.name+' ×'"
+                   class="green-btn carousel-cell" v-on:click="category.selected = false">
 
+          </flickity>
         </div>
-        <div class="col-1" >
+        <div class="col-1">
           <button class="green-btn clear-all" v-if="categories.some(value => value.selected)"
                   v-on:click="categories.forEach( category => category.selected = false )">
             <img src="../assets/remove-all.png" alt="">
@@ -47,6 +49,16 @@
     data () {
       return {
         flickityOptions: {
+          initialIndex: 0,
+          freeScroll: true,
+          contain: true,
+          cellAlign: 'center',
+          wrapAround: false,
+          prevNextButtons: false,
+          pageDots: false,
+          setGallerySize: false
+        },
+        pinsFlickityOptions: {
           initialIndex: 0,
           freeScroll: true,
           contain: true,
@@ -122,14 +134,31 @@
         //this will allow flex-end to move item to the right
         justify-content: center
 
-        input
-          width: auto //13.5416667vw
-          //font-size: 1.094vw
-          padding: 5px
+        .flickity-enabled
+          height: 100%
+          width: 100%
 
-          max-height: 50px
-          margin-left: 8px
-          margin-right: 8px
+          .flickity-viewport
+            position: absolute
+            width: 100%
+
+            .flickity-slider
+              /*display: flex*/
+              //align-items: center
+              /*transform: none !important*/
+              /*justify-content: space-between !important*/
+
+              input.carousel-cell
+                height: 100%
+                width: auto
+                //13.5416667vw
+                //font-size: 1.094vw
+                max-height: 50px
+                margin-left: 8px
+                margin-right: 8px
+
+
+
 
       button.clear-all
         @extend %btn-img-inside
