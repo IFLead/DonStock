@@ -130,11 +130,11 @@
             </form>
           </div>
         </div>
-        <!--<div class="hidden-xs">-->
-        <div class="border">
-          <img src="./assets/border.png" alt="Граница">
+        <div class="d-none d-sm-block">
+          <div class="border">
+            <img src="./assets/border.png" alt="Граница">
+          </div>
         </div>
-        <!--</div>-->
         <div class="main-right">
           <div class="product">
             <div class="production-photos">
@@ -871,8 +871,8 @@
                 height: 600px
               @include media-breakpoint-down(sm)
                 height: 480px
-              @include media-breakpoint-down(xs)
-                display: none
+              //@include media-breakpoint-down(xs)
+                //display: none
 
               img
                 height: 100%
