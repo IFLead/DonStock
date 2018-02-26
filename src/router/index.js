@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import Categories from '@/components/Categories'
-import Cards from '@/components/Cards'
+// import Hello from '@/components/Hello'
+// import Categories from '@/components/Categories'
+// import Cards from '@/components/Cards'
+import App from '@/App'
+import Account from '@/components/Account'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -12,18 +14,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'App',
+      component: App
     },
     {
-      path: '/',
-      name: 'Categories',
-      component: Categories
-    },
-    {
-      path: '/',
-      name: 'Cards',
-      component: Cards
+      path: '/account',
+      name: 'Account',
+      component: Account
     }
   ]
 })

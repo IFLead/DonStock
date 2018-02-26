@@ -3,7 +3,8 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 
-import App from './App'
+// import App from './App'
+import Account from './components/Account'
 import BootstrapVue from 'bootstrap-vue'
 import router from './router'
 
@@ -15,6 +16,8 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: {App}
+  // template: '<App/>',
+  // components: {App},
+  template: '<Account/>',
+  components: {Account}
 })
