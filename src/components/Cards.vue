@@ -1,80 +1,68 @@
 <template>
-  <!--<div class="cards w-100">-->
-  <!--<div class="items card-deck justify-content-center">-->
-  <!--<div v-for="shop in shops" v-show="isFiltered(shop.categories)"-->
-  <!--class="item-card card gold">-->
-  <!--<div class="top">-->
-  <!--<div class="voting">-->
-  <!--<button class="minus">-->
-  <!--<img height="44" width="44" src="../assets/minus-vote.svg" alt="plus">-->
-  <!--</button>-->
-  <!--<p class="text-center">Голосовать</p>-->
-  <!--<button class="plus">-->
-  <!--<img height="44" width="44" src="../assets/plus-vote.svg" alt="plus">-->
-  <!--</button>-->
-  <!--</div>-->
-  <!--<div class="rating">-->
-  <!--<p>+13</p>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--<div class="img">-->
-  <!--<flickity ref="flickity" :options="flickityOptions">-->
-  <!--<img class="carousel-cell" v-for="photo in shop.photos" v-bind:data-flickity-lazyload="photo.url"-->
-  <!--alt="Main Image">-->
-  <!--&lt;!&ndash;<img class="blurred" v-bind:src="card.path" alt="Blurred image">&ndash;&gt;-->
-  <!--</flickity>-->
-  <!--</div>-->
-  <!--<div class="body">-->
-  <!--<div class="title">-->
-  <!--<p class="title">{{shop.name}}</p>-->
-  <!--</div>-->
-  <!--<div class="links">-->
-  <!--<a target="_blank" :href="shop.link_one">-->
-  <!--<img :src="chooseImage(shop.link_one)" alt="">-->
-  <!--</a>-->
-  <!--<a target="_blank" v-if="shop.link_two" :href="shop.link_two">-->
-  <!--<img :src="chooseImage(shop.link_two)" alt="">-->
-  <!--</a>-->
-  <!--<a target="_blank" v-if="shop.link_three" :href="shop.link_three">-->
-  <!--<img :src="chooseImage(shop.link_three)" alt="">-->
-  <!--</a>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="row justify-content-center new">-->
-  <!--<input type="button" value="Показать еще" class="green-btn" v-on:click="loadShops()">-->
-  <!--</div>-->
-  <!--</div>-->
   <div class="container-fluid items">
-    <div class="row no-gutters">
-      <div class="col-md-6 col-xl-3" v-for="shop in shops" v-show="isFiltered(shop.categories)">
-        <div class="card gold">
+    <div class="row no-gutters cards">
+      <!--col-xs-12 offset-sm-2 col-sm-8 offset-md-0 col-md-6 col-xl-3-->
+      <div class="col" v-for="(shop, index) in shops" :key="shop.id" v-show="isFiltered(shop.categories)">
+        <div v-bind:class="{gold:index<4}" class="card">
+          <div class="top" v-show="overlay_index !== shop.id">
+            <button @click="overlay_index = shop.id">
+              <img src="../assets/info.png" alt="Назад">
+            </button>
+          </div>
           <div class="wrapper">
             <flickity ref="flickity" :options="flickityOptions">
               <img class="card-img-top img-fluid carousel-cell" v-for="photo in shop.photos"
-                   v-bind:data-flickity-lazyload="photo.url" alt="Card image cap">
+                   v-bind:data-flickity-lazyload="photo.url"
+                   alt="Card image cap">
             </flickity>
+            <div class="card-img-overlay" v-show="overlay_index === shop.id">
+              <div class="top-overlay">
+                <button v-on:click="overlay_index = -1">
+                  ×
+                </button>
+              </div>
+              <p class="card-caption-text">Описание</p>
+              <p class="card-text"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+              </p>
+              <div class="card-rating-wrapper">
+                <p class="card-caption-rating">Рейтинг <span class="card-rating"
+                                                             v-bind:class="{red:shop.rating<0, green:shop.rating>0}">{{shop.rating}}</span>
+                </p>
+                <div class="voting">
+                  <button class="plus" @click="like(shop)">
+                    <img height="25" width="25"
+                         :src="require(shop.vote_status === 1? '../assets/like-active.png':'../assets/like-inactive.png')"
+                         alt="plus">
+                  </button>
+                  <button class="minus" @click="dislike(shop)">
+                    <img height="25" width="25"
+                         :src="require(shop.vote_status === -1? '../assets/dislike-active.png':'../assets/dislike-inactive.png')"
+                         alt="minus">
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
           <h4 class="card-title text-center">{{shop.name}}</h4>
           <div class="card-body">
-            <a target="_blank" :href="shop.link_one">
+            <a target="_blank" rel="noopener" :href="shop.link_one">
               <img :src="chooseImage(shop.link_one)" alt="">
             </a>
-            <a target="_blank" v-if="shop.link_two" :href="shop.link_two">
+            <a target="_blank" rel="noopener" v-if="shop.link_two" :href="shop.link_two">
               <img :src="chooseImage(shop.link_two)" alt="">
             </a>
-            <a target="_blank" v-if="shop.link_three" :href="shop.link_three">
+            <a target="_blank" rel="noopener" v-if="shop.link_three" :href="shop.link_three">
               <img :src="chooseImage(shop.link_three)" alt="">
             </a>
           </div>
         </div>
       </div>
     </div>
+    <div class="row justify-content-center new">
+      <input type="button" value="Показать еще" class="green-btn" v-on:click="loadShops()">
+    </div>
   </div>
 </template>
-
 <script>
   import Flickity from 'vue-flickity'
 
@@ -84,9 +72,6 @@
       Flickity
     },
     props: ['shops', 'categories'],
-    mounted () {
-
-    },
     data () {
       return {
         flickityOptions: {
@@ -96,7 +81,8 @@
           setGallerySize: false,
           lazyLoad: 1,
           wrapAround: true
-        }
+        },
+        overlay_index: -1
       }
     },
     methods: {
@@ -109,7 +95,7 @@
         // })
       },
       isFiltered (categories) {
-        let selectedCategories = this.selectedCategories.map(value => value.id)
+        const selectedCategories = this.selectedCategories.map(value => value.id)
         return !selectedCategories.length || categories.some(value => selectedCategories.includes(value))
       },
       chooseImage (link) {
@@ -118,14 +104,75 @@
         const vkRegex = /(https?:\/\/)?(www\.)?(vk.com\/)(id\d|[a-zA-z][a-zA-Z0-9_.]{2,})/
 
         if (fbRegex.exec(link) !== null) {
-          return '../../static/img/links/facebook-link.png'
+          return require('../assets/links/facebook-link.png')
         } else if (instaRegex.exec(link) !== null) {
-          return '../../static/img/links/instagram-link.png'
+          return require('../assets/links/instagram-link.png')
         } else if (vkRegex.exec(link) !== null) {
-          return '../../static/img/links/vk-link.png'
-        } else {
-          return '../../static/img/links/website-link.png'
+          return require('../assets/links/vk-link.png')
         }
+        return require('../assets/links/website-link.png')
+      },
+      calcRating (likes, dislikes) {
+        const ups = likes
+        const downs = dislikes
+        const n = ups + downs
+        let rating
+        if (n === 0) {
+          rating = 0
+        } else {
+          const z = 1.281551565545
+          const p = ups / n
+
+          const left = p + 1 / (2 * n) * z ** 2
+          const right = z * Math.sqrt(p * (1 - p) / n + Math.sqr(z) / (4 * Math.sqr(n)))
+          const under = 1 + 1 / n * z ** 2
+          rating = Math.round((left - right) / under * 100)
+        }
+        return rating
+      },
+      like (shop) {
+        if (shop.vote_status === +1) {
+          shop.likes -= 1
+          shop.vote_status = 0
+        } else if (shop.vote_status === 0) {
+          shop.likes += 1
+          shop.vote_status = 1
+        } else if (shop.vote_status === -1) {
+          shop.dislikes -= 1
+          shop.likes += 1
+          shop.vote_status = 1
+        }
+
+        shop.rating = this.calcRating(shop.likes, shop.dislikes)
+        this.$http.post('/api/votes/', {shop: shop.id, action: true}).then((response) => {
+          shop.likes = response.likes
+          shop.dislikes = response.dislikes
+          shop.rating = response.rating
+          shop.vote_status = response.vote_status
+        }, (response) => {
+        })
+      },
+      dislike (shop) {
+        if (shop.vote_status === -1) {
+          shop.dislikes -= 1
+          shop.vote_status = 0
+        } else if (shop.vote_status === 0) {
+          shop.dislikes += 1
+          shop.vote_status = -1
+        } else if (shop.vote_status === +1) {
+          shop.likes -= 1
+          shop.dislikes += 1
+          shop.vote_status = -1
+        }
+
+        shop.rating = this.calcRating(shop.likes, shop.dislikes)
+        this.$http.post('/api/votes/', {shop: shop.id, action: false}).then((response) => {
+          shop.likes = response.likes
+          shop.dislikes = response.dislikes
+          shop.rating = response.rating
+          shop.vote_status = response.vote_status
+        }, (response) => {
+        })
       }
     },
     computed: {
@@ -138,11 +185,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass">
-  /*.cards:hover > .voting*/
-    /*margin-top: 0*/
-    /*-webkit-transition: margin 1s*/
-    /*-moz-transition: margin 1s*/
-    /*transition: margin 1s*/
 
   @import '~bootstrap/scss/bootstrap'
   @import '../style/variables'
@@ -151,256 +193,179 @@
     padding-left: calc(6.845vw - 7px)
     padding-right: calc(6.845vw - 7px)
 
-    .gold
-      border: 2px solid #FFD700 !important
-      box-shadow: 0 100px 280px -90px #ffd70066 !important
+    div.cards
+      .gold
+        border: 2px solid #FFD700 !important
+        box-shadow: 0 100px 280px -90px #ffd70066 !important
 
-    .card
-      margin-right: 7px
-      margin-left: 7px
-      border-radius: 27px
-      margin-top: 8.24vh
-      margin-bottom: 4.26vh
-      border: 2px solid transparent
-      overflow: hidden
-      box-shadow: 0 27px 100px -64px rgba(0, 0, 0, 0.5)
-
-      .wrapper
-        position: relative
-        overflow: hidden
-
-        .flickity-enabled
-          position: absolute
-          left: 0
-          top: 0
-          width: 100%
-          height: 100%
-
-          .carousel-cell
-            left: 0
-            width: auto
-            max-width: none
-            height: 100%
-            min-width: 100%
-
-        &:after
-          content: ''
-          display: block
-          padding-top: 130%
-
-      .card-title
-        margin-top: 7px
-        font-size: 27px
-
-      div.card-body
-        /*height: 60%*/
-        padding-left: 27.25%
-        padding-right: 27.25%
-        /*padding-bottom: 1.85vh*/
-        display: flex
-        justify-content: space-evenly
-
-        a
-          width: min-content
-          height: min-content
-          align-self: flex-end
-
-          img
-            opacity: 0.25
-            max-width: 45px
-            max-height: 45px
-            min-width: 35px
-            min-height: 35px
-            height: 2.84vw
-            width: 2.84vw
-            border: 0
-            filter: grayscale(100%)
-
-            &:hover
-              filter: grayscale(0%)
-              opacity: 1
-
-  div.noooo
-    //div.cards
-       //padding: 40px
-
-    div.items
-      width: 100%
-      margin-bottom: 8.333vh
-      // 90px
-      padding-left: calc(7.2vw - 7px)
-      padding-right: calc(7.2vw - 7px)
-      margin-right: 0
-      margin-left: 0
-      @include media-breakpoint-only(xs)
-        padding-left: calc(7.2vw - 7px)
-        padding-right: calc(7.2vw - 7px)
-
-      %card
-        /*width: 20.8333vw*/
-        width: 100%
-        max-width: 396px
-        min-width: 315px
-        height: 650px
-        max-height: 80vh
-        // 650px
-        min-height: 402.14643px
-        margin-top: 8.24vh
-        margin-bottom: 4.26vh
-        margin-right: 7px
-        margin-left: 7px
+      .card
         border-radius: 27px
-        position: relative
+        margin: 8.24vh 7px 4.26vh
+        border: 2px solid transparent
         overflow: hidden
         box-shadow: 0 27px 100px -64px rgba(0, 0, 0, 0.5)
+        max-height: 90vh
+        max-width: 380px
+        min-width: 350px
+        /*margin-left: auto*/
+        /*margin-right: auto*/
+        position: relative
+        left: 50%
+        transform: translateX(-50%)
+        @include media-breakpoint-down(lg)
+          max-height: 95vmax
+        @include media-breakpoint-down(xs)
+          min-width: 270px
+          max-width: 320px
+        .top
+          position: absolute
+          top: 0
+          right: 0
+          height: 60px
+          width: 60px
+          background-color: rgba(0, 0, 0, 0.7)
+          border-radius: 0 25px 0 25px
+          z-index: 1
 
-        @include media-breakpoint-only(xs)
-          max-height: 90vh
-          height: 643px
-          min-width: 260px
+          button
+            @extend %btn-img-inside
+            position: absolute
+            right: 0
+            z-index: 1
+            padding-top: 14px
+            padding-right: 14px
 
-        div.img
-          height: 80%
-          //515
-          width: 100%
+            img
+              height: 30px
+              width: 30px
+
+        .wrapper
+          position: relative
+          overflow: hidden
+
+          .card-img-overlay
+            background-color: rgba(0, 0, 0, 0.7)
+            color: white
+            padding-left: 38px
+            padding-right: 58px
+            @include media-breakpoint-down(xs)
+              padding-left: 25px
+              padding-right: 25px
+
+            .top-overlay
+              position: absolute
+              top: 0
+              right: 0
+
+              button
+                @extend %btn-img-inside
+                padding-right: 20px
+                padding-top: 4px
+                color: white
+                font-size: 35px
+
+            p.card-caption-text
+              font-size: 20px
+              color: #D4D3CA
+              margin-bottom: 33px
+              @include media-breakpoint-down(xs)
+                margin-bottom: 18px
+
+            p.card-text
+              font-size: 20px
+              line-height: 24px
+
+              @include media-breakpoint-down(xs)
+                font-size: 4.6875vw
+
+            div.card-rating-wrapper
+              position: absolute
+              bottom: 20px
+              display: flex
+              justify-content: space-between
+              width: 81%
+              @include media-breakpoint-down(xs)
+                bottom: 0px
+
+              .card-caption-rating
+                font-size: 20px
+                color: #D4D3CA
+
+                .card-rating
+                  color: white
+                  margin-left: 15px
+
+              .voting
+
+                .red
+                  color: red
+
+                .green
+                  color: green
+
+                .plus
+                  margin-left: auto
+                  margin-right: 10px
+                  @extend %btn-img-inside
+
+                .minus
+                  margin-left: 0
+                  @extend %btn-img-inside
 
           .flickity-enabled
+            position: absolute
+            left: 0
+            top: 0
+            width: 100%
             height: 100%
 
             .carousel-cell
+              left: 0
+              width: auto
+              max-width: none
               height: 100%
-              width: 100%
-              object-fit: cover
+              min-width: 100%
 
-        /*img*/
-          /*border-radius: 25px 25px 0 0*/
-          /*width: 100%*/
-          /*height: 100%*/
-          /*object-fit: cover*/
+          &:after
+            content: ''
+            display: block
+            padding-top: 130%
 
-        /*img.blurred*/
-          /*position: absolute*/
-          /*top: 0*/
-          /*clip: rect(0, auto, 75px, 0)*/
-          /*filter: blur(15px) opacity(0.3)*/
-          /*transform: translateZ(0)*/
+        .card-title
+          margin-top: 7px
+          font-size: 27px
 
-        div.top
-          position: absolute
-          top: 0
-          width: 100%
-          z-index: 1
+        div.card-body
+          /*height: 60%*/
+          padding-left: 27.25%
+          padding-right: 27.25%
+          /*padding-bottom: 1.85vh*/
+          display: flex
+          justify-content: space-evenly
 
-          div.rating
-            display: none
-            width: 92px
-            height: 75px
-            top: 0
-            right: 0
-            position: absolute
-            border-radius: 0 25px 0 25px
-            background: rgba(100%, 0%, 0%, 0.7)
-            z-index: 1
+          a
+            width: min-content
+            height: min-content
+            align-self: flex-end
 
-            p
-              font-size: 23px
-              text-align: center
-              z-index: 2
-
-          div.voting
-            width: 100%
-            //border-radius: 25px 25px 0 0
-            background: rgba(255, 255, 255, 0.8)
-            height: 75px
-            padding: 15px 60px
-            display: flex
-            text-align: center
-            z-index: 1
-            margin-top: -75px
-
-            %btn-vote
-              @extend %btn-img-inside
+            img
+              opacity: 0.25
+              max-width: 45px
+              max-height: 45px
+              min-width: 35px
+              min-height: 35px
+              height: 2.84vw
+              width: 2.84vw
               border: 0
-              outline: none
-              background-color: transparent
-              z-index: 2
+              filter: grayscale(100%)
 
-              img
-                opacity: 0.5
-
-            p
-              width: 100%
-              padding-top: 5px
-              font-size: 23px
-              vertical-align: middle
-              z-index: 2
-
-            .plus
-              margin-left: auto
-              @extend %btn-vote
-
-            .minus
-              margin-left: 0
-              @extend %btn-vote
-
-        div.body
-          height: 20%
-          div.title
-            height: 40%
-            padding-top: 1.388vh
-            p.title
-              text-align: center
-              font-size: 27px
-
-          div.links
-            height: 60%
-            padding-left: 25.25%
-            padding-right: 25.25%
-            padding-bottom: 1.85vh
-            display: flex
-            justify-content: space-evenly
-            a
-              width: min-content
-              height: min-content
-              align-self: flex-end
-
-              img
-                opacity: 0.25
-                max-width: 45px
-                max-height: 45px
-                min-width: 35px
-                min-height: 35px
-                height: 2.84vw
-                width: 2.84vw
-                border: 0
-                filter: grayscale(100%)
-
-                &:hover
-                  filter: grayscale(0%)
-                  opacity: 1
-
-      div.item-card
-        @extend %card
-        border: 2px solid transparent
-
-      div.item-card.gold
-        border: 2px solid #FFD700
-        box-shadow: 0 100px 280px -90px #ffd70066
-
+              &:hover
+                filter: grayscale(0%)
+                opacity: 1
     div.new
-      width: 100%
-      height: 14.35185vh
+      padding-bottom: 40px
 
-      input[type="button"]
-        width: 260px
-        //width: 130px
-        //width: 13.541667vw
-        height: 60px
-        //5.5555vh
-        @include media-breakpoint-down(sm)
-          width: 200px
-
-
+      input
+        width: 230px
 </style>
-
 

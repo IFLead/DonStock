@@ -1,6 +1,40 @@
+@import '~bootstrap/scss/bootstrap';
+
+$green: #1DB954;
+
 %btn-img-inside {
   border: 0;
   outline: none;
   background-color: transparent;
   padding: 0;
+  cursor: pointer;
+}
+
+input[type="button"].green-btn {
+  background-color: $green;
+  color: white;
+}
+
+input[type="button"].transp-btn {
+  background-color: transparent;
+  color: black;
+  @include media-breakpoint-down(md) {
+    color: white;
+  }
+}
+
+input[type="button"] {
+  border: 0;
+  max-height: 60px;
+  min-height: 40px;
+  font-size: 30px;
+  border-radius: 50px;
+  outline: none;
+  @include media-breakpoint-down(sm) {
+    font-size: 20px
+  }
+  &:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+  }
 }

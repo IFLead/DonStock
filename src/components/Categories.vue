@@ -2,21 +2,18 @@
   <div class="categories h-100">
     <div class="header">
       <flickity ref="flickity" :options="flickityOptions">
-        <input class="carousel-cell" type="button"
-               v-on:click="setInverse(category)"
-               v-for="category in categories"
-               v-bind:value="category.name">
-
+        <div v-for="category in categories" class="carousel-cell">
+          <label>
+            <input type="checkbox" v-model="category.selected"><span>{{category.name}}</span>
+          </label>
+        </div>
       </flickity>
     </div>
-    <div class="container-fluid" v-show="true ||categories.some(value => value.selected)">
-      <div class="row">
-        <div class="pins col-10">
-          <flickity ref="flickity" :options="pinsFlickityOptions">
-            <input type="button" v-for="category in categories" v-show="true || category.selected" :value="category.name+' ×'"
-                   class="green-btn carousel-cell" v-on:click="category.selected = false">
-
-          </flickity>
+    <div class="container-fluid items d-none d-xl-block" v-if="categories.some(value => value.selected)">
+      <div class="row no-gutters">
+        <div class="pins col-11">
+          <input type="button" v-for="category in categories" v-show="category.selected" :value="category.name+' ×'"
+                 class="green-btn" v-on:click="category.selected = false">
         </div>
         <div class="col-1">
           <button class="green-btn clear-all" v-if="categories.some(value => value.selected)"
@@ -57,16 +54,6 @@
           prevNextButtons: false,
           pageDots: false,
           setGallerySize: false
-        },
-        pinsFlickityOptions: {
-          initialIndex: 0,
-          freeScroll: true,
-          contain: true,
-          cellAlign: 'center',
-          wrapAround: false,
-          prevNextButtons: false,
-          pageDots: false,
-          setGallerySize: false
         }
       }
     }
@@ -85,22 +72,14 @@
     /*justify-content: space-evenly*/
     div.header
       height: 11.112vh
+      max-height: 120px
       background-color: black
+      @include media-breakpoint-down(md)
+        height: 11.112vmax
 
-      input[type="button"]
+      input
         border: 0
         outline: none
-        color: white
-        text-align: center
-        background-color: transparent
-        //font-size: 1.25vw
-        font-size: 24px
-        @include media-breakpoint-down(xs)
-          font-size: 14px
-
-        &:hover
-          color: #1DB954
-          filter: brightness(100%)
 
       .flickity-enabled
         height: 100%
@@ -120,45 +99,60 @@
               margin-right: 10px
               margin-left: 10px
 
-    div.row
-      margin-top: 8.333vh
-      height: 4.63vh
-      min-height: 40px
-      div.pins
-        height: 100%
-        padding-left: 9.375vw
-        //padding-right: 9.375vw
-        display: flex
-        position: relative
-        flex-direction: row
-        //this will allow flex-end to move item to the right
-        justify-content: center
+              label
+                position: relative
+                top: 50%
+                transform: translateY(-50%)
+                cursor: pointer
 
-        .flickity-enabled
+                input
+                  display: none
+                  &:checked + span
+                    color: #1DB954
+                    filter: brightness(100%)
+
+                span
+                  color: white
+                  text-align: center
+                  background-color: transparent
+                  //font-size: 1.25vw
+                  font-size: 24px
+                  @include media-breakpoint-down(xs)
+                    font-size: 14px
+
+                  &:hover
+                    color: #1DB954
+                    filter: brightness(100%)
+    div.items
+      padding-left: calc(7.2vw - 7px)
+      padding-right: calc(7.2vw - 7px)
+
+      div.row
+        margin-top: 8.333vh
+        height: 4.63vh
+        min-height: 40px
+        div.pins
           height: 100%
-          width: 100%
+          /*display: flex*/
+          /*justify-content: space-between !important*/
+          //padding-left: 9.375vw
+          //padding-right: 9.375vw
+          //display: flex
+          //position: relative
+          //flex-direction: row
+          //this will allow flex-end to move item to the right
+          //justify-content: center
 
-          .flickity-viewport
-            position: absolute
-            width: 100%
-
-            .flickity-slider
-              /*display: flex*/
-              //align-items: center
-              /*transform: none !important*/
-              /*justify-content: space-between !important*/
-
-              input.carousel-cell
-                height: 100%
-                width: auto
-                //13.5416667vw
-                //font-size: 1.094vw
-                max-height: 50px
-                margin-left: 8px
-                margin-right: 8px
-
-
-
+          input
+            font-size: 1.46vw
+            height: 100%
+            /* width: 13.54vw */
+            /* max-height: 50px */
+            margin-left: 8px
+            margin-right: 8px
+            padding-left: 15px
+            padding-right: 15px
+            min-width: max-content
 
       button.clear-all
         @extend %btn-img-inside
