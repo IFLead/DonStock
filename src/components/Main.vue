@@ -239,7 +239,6 @@
     padding-top: 11.6667vh
 
     .contacts
-
       margin-bottom: 40px
 
       p
@@ -251,14 +250,8 @@
         width: 258px
         justify-content: center !important
 
-    img
-      width: 100%
-      height: 100%
-      border: 0
-
     .icon
       margin-right: 1.111111%
-      // 22 / 1980
       width: 3.2%
       height: 100%
       @media screen and (max-width: 1200px)
@@ -271,6 +264,11 @@
       @media screen and (max-width: 576px)
         width: 10%
         height: 100%
+
+      img
+        width: 100%
+        height: 100%
+        border: 0
 
     .icon:last-child
       margin-right: 0
