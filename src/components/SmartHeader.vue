@@ -6,7 +6,7 @@
         <input v-b-modal.add-login centered v-if="!isAuthenticated"
                class="button button-transparent" type="button"
                value="Добавить магазин">
-        <input @click="start" v-if="isAuthenticated"
+        <input @click="start" v-if="!isAuthenticated"
                class="button button-green" type="button"
                value="Добавить магазин">
       </div>

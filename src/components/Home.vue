@@ -206,9 +206,8 @@
           margin-right: auto
 
   footer.main
-    height: 38.889vh
     background-color: black
-    padding-top: 11.6667vh
+    padding: 11.6667vh 30px 30px
 
     .contacts
       margin-bottom: 40px

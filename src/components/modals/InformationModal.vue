@@ -30,7 +30,7 @@
               <dropzone id="other-photos" ref="dropzoneOther" :options="dropzoneOther"
                         v-on:vdropzone-sending="dropzoneSendingEvent"
                         v-on:vdropzone-max-files-exceeded="dropzoneRemoveThis"
-                        v-on:vdropzone-error="dropzoneOnlyOneError">
+                        v-on:vdropzone-error="dropzoneOnlyOneError" class="dropzone-custom">
               </dropzone>
             </div>
             <!--<div class="product-label">-->
@@ -222,7 +222,9 @@
         display: none
 
   #information-modal
-    padding: 0
+    padding:
+      top: 50px
+      bottom: 50px
 
     .modal-dialog
       max-width: 1200px
@@ -460,6 +462,52 @@
             color: white
             font-size: 30px
             margin-left: 37.945%
+
+      @include media-breakpoint-down(xs)
+        margin: 0
+
+  .dz-preview
+    @include media-breakpoint-down(sm)
+      width: 100% !important
+
+    @include media-breakpoint-between(md, lg)
+      width: 100% !important
+
+  .production-photos
+    @include media-breakpoint-only(xs)
+      height: auto !important
+      min-height: 250px !important
+
+    @include media-breakpoint-only(md)
+      height: auto !important
+      min-height: 250px !important
+
+    @include media-breakpoint-only(lg)
+      height: auto !important
+      min-height: 360px !important
+
+
+
+  #other-photos
+    @include media-breakpoint-only(xs)
+      height: 100% !important
+      min-height: 250px !important
+      margin-bottom: 0 !important
+
+    @include media-breakpoint-only(lg)
+      height: 100% !important
+      min-height: 360px !important
+      margin-bottom: 0 !important
+
+    @include media-breakpoint-only(md)
+      height: 100% !important
+      min-height: 250px !important
+      margin-bottom: 0 !important
+
+    @include media-breakpoint-only(sm)
+      height: 100% !important
+      min-height: 250px !important
+      margin-bottom: 0 !important
 
 </style>
 
