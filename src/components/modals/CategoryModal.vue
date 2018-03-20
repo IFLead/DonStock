@@ -2,12 +2,23 @@
   <b-modal ref="category_modal" id="category-modal" hide-header hide-footer centered>
     <p class="tagline">Выберите категории Вашего интернет-магазина</p>
     <div class="form-group">
-      <select class="form-control" id="change_category" v-model="selected">
-        <option selected disabled hidden>Выберите категории</option>
-        <option v-for="category in categories" v-bind:value="category.id">
-          {{ category.name }}
-        </option>
-      </select>
+      <multiselect
+        v-model="catSelected"
+        :options="categories"
+        :multiple="true"
+        track-by="id"
+        placeholder="Выберите категории"
+        :custom-label="customLabel"
+        selectLabel=""
+        selectedLabel="Выбрано"
+        deselectLabel="">
+      </multiselect>
+      <!--<select class="form-control" id="change_category" v-model="selected">-->
+        <!--<option selected disabled hidden>Выберите категории</option>-->
+        <!--<option v-for="category in categories" :key="category.id" v-bind:value="category.id" >-->
+          <!--{{ category.name }}-->
+        <!--</option>-->
+      <!--</select>-->
     </div>
     <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>-->
     <div class="back-button">
@@ -20,12 +31,16 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
+  import Multiselect from 'vue-multiselect'
+
   export default {
     name: 'category-modal',
-    props: ['categories'],
+    components: { Multiselect },
     data () {
       return {
-        selected: -1
+        selected: -1,
+        catSelected: null
       }
     },
     methods: {
@@ -36,11 +51,20 @@
         if (this.category !== -1) {
           this.$emit('finish', this.category)
         }
+      },
+      customLabel (option) {
+        return `${option.name}`
       }
+    },
+    computed: {
+      ...mapGetters({
+        categories: 'allCategories'
+      })
     }
   }
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass">
   @import '~bootstrap/scss/bootstrap'
@@ -56,7 +80,7 @@
       .modal-content
         border-radius: 25px
         width: 100%
-        max-height: 348px
+        //max-height: 348px
 
         .modal-body
           padding: 0
@@ -80,10 +104,9 @@
               font-size: 1em
 
           .form-group
-            padding-left: 26.600442%
+            padding-left: 12%
             //241px / 906px
-            padding-right: 26.600442%
-            //241px / 906px
+            padding-right: 12%
             margin: 0
             padding-bottom: 7.3951435%
             // 67px / 906px
@@ -91,38 +114,46 @@
               padding-left: 15%
               padding-right: 15%
 
-            select
-              max-width: 426px
+            .multiselect
+              //max-width: 426px
               border-radius: 0
-              background: transparent url("../../assets/combobox_category.png") no-repeat right
-              appearance: none
-
-            .form-control
               width: 100%
-              height: 39.5px
-              padding: 0
+              //height: 39.5px
+              /*padding: 0*/
               font-size: 1.5em
               color: #C5C5C5
-              border-bottom: 1px solid black
-              border-top: none
-              border-left: none
-              border-right: none
+              /*border-bottom: 1px solid black*/
+              /*border-top: none*/
+              /*border-left: none*/
+              /*border-right: none*/
               @include media-breakpoint-down(xs)
                 font-size: 0.9em
-
-              option
+              .multiselect__input
+                font-size: 1em
+                @include media-breakpoint-down(xs)
+                  font-size: 0.9em
+              .multiselect__tag
+                background: #1DB954
+              .multiselect__element
                 font-size: 1em
                 //24px
                 min-height: 1.5em
                 //32px
-                border: 1px solid #95989A
+                /*border: 1px solid #95989A*/
                 color: black
 
-              option:checked
-                background-color: #1DB954
+              /*.multiselect__option--selected .multiselect__option--highlight*/
+                /*background-color: #1DB954*/
 
-              option:hover
-                background-color: #1DB954
+              .multiselect__option--highlight
+                background: #1DB954
+                &:after
+                  background: #1DB954
+              .multiselect__option--selected.multiselect__option--highlight
+                background: #ff6a6a
+                &:after
+                  background: #ff6a6a
+
 
           .back-button
             float: left

@@ -28,7 +28,7 @@
                 <p class="card-caption-rating">Рейтинг <span class="card-rating"
                                                              v-bind:class="{red:shop.rating<0, green:shop.rating>0}">{{shop.rating}}</span>
                 </p>
-                <div class="voting">
+                <div class="voting" v-if="isOnline && isAuthenticated">
                   <button class="plus" @click="like(shop)">
                     <img height="25" width="25"
                          :src="require(shop.vote_status === 1? '../assets/like-active.png':'../assets/like-inactive.png')"
@@ -65,13 +65,24 @@
 </template>
 <script>
   import Flickity from 'vue-flickity'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'cards',
     components: {
       Flickity
     },
-    props: ['shops', 'categories'],
+    computed: {
+      ...mapGetters({
+        shops: 'sortedShops',
+        categories: 'allCategories'
+      }),
+      ...mapGetters([
+        'selectedCategories',
+        'isOnline',
+        'isAuthenticated'
+      ])
+    },
     data () {
       return {
         flickityOptions: {
@@ -86,14 +97,10 @@
       }
     },
     methods: {
-      loadShops () {
-
-        // this.$http.get('http://127.0.0.1:8000/shops/?format=json').then(response => {
-        //   this.shops = this.shops.concat(response.data)
-        // }, response => {
-        //
-        // })
-      },
+      ...mapActions([
+        'like',
+        'dislike'
+      ]),
       isFiltered (categories) {
         const selectedCategories = this.selectedCategories.map(value => value.id)
         return !selectedCategories.length || categories.some(value => selectedCategories.includes(value))
@@ -111,74 +118,8 @@
           return require('../assets/links/vk-link.png')
         }
         return require('../assets/links/website-link.png')
-      },
-      calcRating (likes, dislikes) {
-        const ups = likes
-        const downs = dislikes
-        const n = ups + downs
-        let rating
-        if (n === 0) {
-          rating = 0
-        } else {
-          const z = 1.281551565545
-          const p = ups / n
-
-          const left = p + 1 / (2 * n) * z ** 2
-          const right = z * Math.sqrt(p * (1 - p) / n + Math.sqr(z) / (4 * Math.sqr(n)))
-          const under = 1 + 1 / n * z ** 2
-          rating = Math.round((left - right) / under * 100)
-        }
-        return rating
-      },
-      like (shop) {
-        if (shop.vote_status === +1) {
-          shop.likes -= 1
-          shop.vote_status = 0
-        } else if (shop.vote_status === 0) {
-          shop.likes += 1
-          shop.vote_status = 1
-        } else if (shop.vote_status === -1) {
-          shop.dislikes -= 1
-          shop.likes += 1
-          shop.vote_status = 1
-        }
-
-        shop.rating = this.calcRating(shop.likes, shop.dislikes)
-        this.$http.post('/api/votes/', {shop: shop.id, action: true}).then((response) => {
-          shop.likes = response.likes
-          shop.dislikes = response.dislikes
-          shop.rating = response.rating
-          shop.vote_status = response.vote_status
-        }, (response) => {
-        })
-      },
-      dislike (shop) {
-        if (shop.vote_status === -1) {
-          shop.dislikes -= 1
-          shop.vote_status = 0
-        } else if (shop.vote_status === 0) {
-          shop.dislikes += 1
-          shop.vote_status = -1
-        } else if (shop.vote_status === +1) {
-          shop.likes -= 1
-          shop.dislikes += 1
-          shop.vote_status = -1
-        }
-
-        shop.rating = this.calcRating(shop.likes, shop.dislikes)
-        this.$http.post('/api/votes/', {shop: shop.id, action: false}).then((response) => {
-          shop.likes = response.likes
-          shop.dislikes = response.dislikes
-          shop.rating = response.rating
-          shop.vote_status = response.vote_status
-        }, (response) => {
-        })
       }
-    },
-    computed: {
-      selectedCategories () {
-        return this.categories.filter(value => value.selected === true)
-      }
+
     }
   }
 </script>
@@ -366,6 +307,8 @@
       padding-bottom: 40px
 
       input
+        height: 40px
+        font-size: 1.5vmax
         width: 230px
 </style>
 

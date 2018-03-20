@@ -3,10 +3,12 @@
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <div class="container-fluid">
         <div class="row ">
-          <div class="main-left col-xs-12 col-sm-6">
+          <div class="main-left col-xs-12 col-md-6">
             <div class="main-photo">
-              <dropzone :include-styling="true" id="main-photo" :options="dropzoneOptions"
-                        v-on:vdropzone-sending="sendingEvent">
+              <dropzone id="main-photo" ref="dropzoneMain" :options="dropzoneMain"
+                        v-on:vdropzone-sending="dropzoneSendingEvent"
+                        v-on:vdropzone-max-files-exceeded="dropzoneOnlyOne"
+                        v-on:vdropzone-error="dropzoneOnlyOneError">
               </dropzone>
             </div>
             <div class="general-information">
@@ -23,17 +25,12 @@
           <!--<img src="../../assets/border.png" alt="Граница">-->
           <!--</div>-->
           <!--</div>-->
-          <div class="main-right col-xs-12 col-sm-6">
+          <div class="main-right col-xs-12 col-md-6">
             <div class="production-photos">
-              <!--<div v-for="n in 3" class="row-photos">-->
-              <!--<div v-for="m in 3" class="photo">-->
-              <!--<div class="icon">-->
-              <!--<img src="../../assets/photo-camera.png" alt="Фото продукции">-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
-              <dropzone :include-styling="true" id="other-photos" :options="dropzoneOptions"
-                        v-on:vdropzone-sending="sendingEvent">
+              <dropzone id="other-photos" ref="dropzoneOther" :options="dropzoneOther"
+                        v-on:vdropzone-sending="dropzoneSendingEvent"
+                        v-on:vdropzone-max-files-exceeded="dropzoneRemoveThis"
+                        v-on:vdropzone-error="dropzoneOnlyOneError">
               </dropzone>
             </div>
             <!--<div class="product-label">-->
@@ -62,19 +59,42 @@
       Dropzone
     },
     methods: {
-      sendingEvent () { // file, xhr, formData
+      dropzoneSendingEvent () { // file, xhr, formData
         console.log('Sended')
+      },
+      dropzoneRemoveThis (file) {
+        console.log('Deleted')
+        file._removeLink.click()
+        alert('Превышен лимит на количество фото')
+      },
+      dropzoneOnlyOne (file) {
+        this.$refs.dropzoneMain.removeAllFiles()
+        this.$refs.dropzoneMain.addFile(file)
+      },
+      dropzoneOnlyOneError (file) {
+        this.$refs.dropzoneMain.removeFile(file)
+        alert('Файл слишком велик. Максимальный размер: ' + this.$refs.dropzoneMain.options.maxFilesize + ' MiB.')
+      },
+      dropzoneManyError (file) {
+        this.$refs.dropzoneOther.removeFile(file)
+        alert('Файл слишком велик. Максимальный размер: ' + this.$refs.dropzoneOther.options.maxFilesize + ' MiB.')
       },
       onSubmit (e) {
         e.preventDefault()
-        alert(JSON.stringify(this.form))
-        this.$emit('next', {
-          name: this.name,
-          description: this.description,
-          linkOne: this.linkOne,
-          linkTwo: this.linkTwo,
-          linkThree: this.linkThree
-        })
+        if (this.$refs.dropzoneMain.getAcceptedFiles().length === 1 && this.$refs.dropzoneOther.getAcceptedFiles().length > 0) {
+          alert(JSON.stringify(this.form))
+          console.log(this.$refs.dropzoneMain.getAcceptedFiles())
+          console.log(this.$refs.dropzoneOther.getAcceptedFiles())
+          this.$emit('next', {
+            name: this.name,
+            description: this.description,
+            linkOne: this.linkOne,
+            linkTwo: this.linkTwo,
+            linkThree: this.linkThree
+          })
+        } else {
+          alert('Недостаточное количество фото')
+        }
       },
       onReset (e) {
         e.preventDefault()
@@ -88,6 +108,26 @@
         this.$nextTick(() => {
           this.show = true
         })
+      },
+      defaultDropzoneConfig () {
+        return {
+          url: 'https://httpbin.org/post',
+          autoProcessQueue: false,
+          acceptedFiles: 'image/*',
+          // thumbnailWidth: 200,
+          addRemoveLinks: true,
+          dictRemoveFile: 'Удалить',
+          dictFallbackMessage: 'Ваш браузер не поддерживает загрузку перетягиванием. Установите браузер новее',
+          dictFallbackText: 'Please use the fallback form below to upload your files like in the olden days.',
+          dictFileTooBig: 'Файл слишком dtkbr. Максимальный размер: {{maxFilesize}}MiB.',
+          dictInvalidFileType: 'Вы не можете загрузить файл этого типа.',
+          dictResponseError: 'Server responded with {{statusCode}} code.',
+          dictCancelUpload: 'Отмена загрузки',
+          dictCancelUploadConfirmation: 'Вы уверены, что хотите отменить эту загрузку?',
+          dictMaxFilesExceeded: 'Вы не можете загрузить больше файлов.',
+
+          maxFilesize: 1
+        }
       }
     },
     data () {
@@ -100,25 +140,14 @@
         linkThree: '',
         // other
         show: true,
-        dropzoneOptions: {
-          url: 'https://httpbin.org/post',
-          // autoProcessQueue: false,
-          thumbnailWidth: 200,
-          addRemoveLinks: true,
-          dictDefaultMessage: '',
-          dictRemoveFile: 'Удалить',
-          // Dropzone.prototype.defaultOptions.dictDefaultMessage = "Drop files here to upload";
-          // Dropzone.prototype.defaultOptions.dictFallbackMessage = "Your browser does not support drag'n'drop file uploads.";
-          // Dropzone.prototype.defaultOptions.dictFallbackText = "Please use the fallback form below to upload your files like in the olden days.";
-          // Dropzone.prototype.defaultOptions.dictFileTooBig = "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.";
-          // Dropzone.prototype.defaultOptions.dictInvalidFileType = "You can't upload files of this type.";
-          // Dropzone.prototype.defaultOptions.dictResponseError = "Server responded with {{statusCode}} code.";
-          // Dropzone.prototype.defaultOptions.dictCancelUpload = "Cancel upload";
-          // Dropzone.prototype.defaultOptions.dictCancelUploadConfirmation = "Are you sure you want to cancel this upload?";
-          // Dropzone.prototype.defaultOptions.dictRemoveFile = "Remove file";
-          // Dropzone.prototype.defaultOptions.dictMaxFilesExceeded = "You can not upload any more files.";
-          maxFiles: 1
-        }
+        dropzoneMain: Object.assign(this.defaultDropzoneConfig(), {
+          maxFiles: 1,
+          dictDefaultMessage: 'Главное фото'
+        }),
+        dropzoneOther: Object.assign(this.defaultDropzoneConfig(), {
+          maxFiles: 9,
+          dictDefaultMessage: 'Фото продукции'
+        })
       }
     }
   }
@@ -129,26 +158,28 @@
   @import '~bootstrap/scss/bootstrap'
   @import '~vue2-dropzone/dist/vue2Dropzone.css'
 
-  #main-photo, #other-photos
+  %dropzone
+    height: 100%
+    width: 100%
     font-family: 'Arial', sans-serif
     letter-spacing: 0.2px
     color: black
-    height: 100%
-    width: 100%
-    background-image: url("../../assets/photo-camera.png")
-    background-origin: content-box
-    background-size: 84px 84px
-    background-repeat: no-repeat
-    background-position: center center
+    background:
+      image: url("../../assets/photo-camera.png")
+      origin: content-box
+      size: 84px 84px
+      repeat: no-repeat
+      position: center center
     border-radius: 25px
     border: 1px solid #E2E2E2
 
     &.dz-started
       background-image: none
-
+    .dz-message
+      font-size: 24px
+      @include media-breakpoint-down(md)
+        margin: 0
     .dz-preview
-      width: 100%
-      height: 100%
       display: inline-block
       margin: 0
 
@@ -174,11 +205,29 @@
   /*.dz-success-mark, .dz-error-mark, .dz-remove*/
     /*display: none*/
 
+
+
+  #main-photo
+    @extend %dropzone
+    .dz-preview
+      width: 100%
+      height: 100%
+
+  #other-photos
+    @extend %dropzone
+    .dz-preview
+      width: 33%
+      height: 33%
+      .dz-size, .dz-progress
+        display: none
+
   #information-modal
     padding: 0
 
     .modal-dialog
       max-width: 1200px
+      @include media-breakpoint-down(sm)
+        max-width: 500px
       @include media-breakpoint-down(md)
         width: 100%
 
@@ -186,25 +235,28 @@
         border-radius: 25px
         width: 100%
 
+        %dropzone
+          width: 100%
+          height: 360px
+          margin-bottom: 20px
+          @include media-breakpoint-down(md)
+            height: 250px
+
         .modal-body
           padding: 0
+
+          .main-photo
+            @extend %dropzone
 
           .main-left
             padding:
               top: 4%
-              right: 6.75%
-              bottom: 10.666667%
-              left: 7.583333%
+              right: 7%
+              //bottom: 10%
+              left: 7.5%
             @include media-breakpoint-down(xs)
               padding:
                 top: 10%
-
-            .main-photo
-              width: 100%
-              height: 360px
-              margin-bottom: 20px
-              @include media-breakpoint-down(md)
-                height: 183px
 
               div.photo
                 display: flex
@@ -243,7 +295,7 @@
               align-items: flex-end
               flex-direction: column
               @include media-breakpoint-down(md)
-                height: 100px
+              //height: 100px
 
               .gen-lable
                 text-align: center
@@ -258,11 +310,9 @@
                   color: black
                   padding-bottom: 8.515%
                   margin-bottom: 0
-                  @include media-breakpoint-down(sm)
-                    font-size: 17px
+                  @include media-breakpoint-down(md)
+                    font-size: 24px
                     line-height: 25px
-                  @include media-breakpoint-down(xs)
-                    padding-bottom: 1%
 
                 p
                   margin-bottom: 0
@@ -284,7 +334,7 @@
             .description
               width: 100%
               margin-top: 11%
-              height: 133px
+              height: 130px
               margin-bottom: 0
 
             .form-control
@@ -300,9 +350,9 @@
             .form-control::-webkit-input-placeholder
               color: #C5C5C5
 
-        .border
-          float: left
-          margin-top: 18px
+        /*.border*/
+          /*float: left*/
+          /*margin-top: 18px
           @media screen and (max-width: 1500px)
             height: 700px
           @media screen and (max-width: 1300px)
@@ -311,14 +361,17 @@
             height: 480px
 
           img
-            height: 100%
+            height: 100%*/
 
         .main-right
-          padding: 4% 7% 3.333333% 7.916667%
+          padding:
+            top: 4%
+            right: 7.5%
+            bottom: 3%
+            left: 7%
 
           .production-photos
-            width: 100%
-            height: 360px
+            @extend %dropzone
 
             .row-photos
               margin-bottom: 7%
@@ -359,7 +412,6 @@
 
           .shop-links
             width: 100%
-            margin-top: 9.21%
 
             .tagline
               /*justify-content: center !important*/
@@ -387,7 +439,7 @@
               line-height: 32px
               padding-bottom: 6px
               outline: none
-              margin-bottom: 10%
+              margin-bottom: 11%
               background: transparent url("../../assets/link.png") no-repeat right
               background-position: 98%
               @include media-breakpoint-down(xs)
@@ -398,7 +450,7 @@
               color: #C5C5C5
 
             input[type="text"]:last-child
-              margin-bottom: 0px
+              margin-bottom: 0
 
           .green-btn
             width: 61.032864%

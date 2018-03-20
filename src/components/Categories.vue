@@ -1,7 +1,7 @@
 <template>
   <div class="categories h-100">
     <div class="header">
-      <flickity ref="flickity" :options="flickityOptions">
+      <flickity v-if="categories && categories.length > 0" ref="flickity" :options="flickityOptions">
         <div v-for="category in categories" class="carousel-cell">
           <label>
             <input type="checkbox" v-model="category.selected"><span>{{category.name}}</span>
@@ -28,20 +28,22 @@
 
 <script>
   import Flickity from 'vue-flickity'
+  import {mapGetters} from 'vuex'
 
   export default {
     name: 'categories',
     components: {
       Flickity
     },
-    props: ['categories'],
-    mounted () {
-
-    },
     methods: {
       setInverse (category) {
         this.$set(category, 'selected', category.selected === undefined ? true : !category.selected)
       }
+    },
+    computed: {
+      ...mapGetters({
+        categories: 'allCategories'
+      })
     },
     data () {
       return {
@@ -94,35 +96,35 @@
             /*transform: none !important*/
             justify-content: center !important
 
-            .carousel-cell
-              height: 100%
-              margin-right: 10px
-              margin-left: 10px
+        .carousel-cell
+          height: 100%
+          margin-right: 10px
+          margin-left: 10px
 
-              label
-                position: relative
-                top: 50%
-                transform: translateY(-50%)
-                cursor: pointer
+          label
+            position: relative
+            top: 50%
+            transform: translateY(-50%)
+            cursor: pointer
 
-                input
-                  display: none
-                  &:checked + span
-                    color: #1DB954
-                    filter: brightness(100%)
+            input
+              display: none
+              &:checked + span
+                color: #1DB954
+                filter: brightness(100%)
 
-                span
-                  color: white
-                  text-align: center
-                  background-color: transparent
-                  //font-size: 1.25vw
-                  font-size: 24px
-                  @include media-breakpoint-down(xs)
-                    font-size: 14px
+            span
+              color: white
+              text-align: center
+              background-color: transparent
+              //font-size: 1.25vw
+              font-size: 24px
+              @include media-breakpoint-down(xs)
+                font-size: 14px
 
-                  &:hover
-                    color: #1DB954
-                    filter: brightness(100%)
+              &:hover
+                color: #1DB954
+                filter: brightness(100%)
     div.items
       padding-left: calc(7.2vw - 7px)
       padding-right: calc(7.2vw - 7px)

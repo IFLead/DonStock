@@ -1,19 +1,16 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import VueResource from 'vue-resource'
-
-import App from './App'
-// import Account from './components/Account'
-import BootstrapVue from 'bootstrap-vue'
+// import VueResource from 'vue-resource'
+import Storage from 'vue-web-storage'
+import store from './store'
 import router from './router'
+import App from './App'
+import BootstrapVue from 'bootstrap-vue'
 
-Vue.use(VueResource)
+Vue.use(Storage)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
-if (document.head.querySelector('meta[name=csrfmiddlewaretoken]')) {
-  Vue.http.headers.common['X-CSRF-TOKEN'] = document.head.querySelector('meta[name=csrfmiddlewaretoken]').content
-}
 
 /* eslint-disable no-new */
 Vue.mixin({
@@ -26,7 +23,7 @@ Vue.mixin({
       const attrs = Object.keys(this.$attrs)
       sync.forEach((key) => {
         if (!attrs.includes(key)) {
-          Vue.util.warn(`Missing required sync-prop: "${key}"`, this)
+          Vue.util.warn(`Missing required sync-prop: '${key}'`, this)
         }
         this.$options.computed[key] = {
           get () {
@@ -44,6 +41,7 @@ Vue.mixin({
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
-  components: { App }
+  components: {App}
 })

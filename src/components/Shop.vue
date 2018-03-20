@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-btn @click="start" centered>Создать магазин</b-btn>
+    <!--<b-btn @click="start" centered>Создать магазин</b-btn>-->
     <category-modal ref="category_modal" v-on:back="back" v-on:finish="finish"
                     :categories="categories"></category-modal>
     <information-modal ref="information_modal" v-on:next="next"></information-modal>
@@ -49,24 +49,8 @@
       finish (category) {
         this.newShop.category = category
       }
-    },
-    mounted () {
-
     }
-
   }
-
-  // 'id': 2,
-  //   'photos': [{'url': 'http://localhost:8000/media/shops-images/2018/01/13/Categories_-_click-image7.jpg'}],
-  //   'name': 'Pizza Store',
-  //   'link_one': 'https://vk.com/dadoem',
-  //   'link_two': 'https://www.instagram.com/lisapeachy',
-  //   'link_three': 'https://www.facebook.com/STPeachy/',
-  //   'likes': 0,
-  //   'dislikes': 0,
-  //   'rating': '0.00',
-  //   'user': 1,
-  //   'categories': [3]
 </script>
 
 
