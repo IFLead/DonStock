@@ -1,14 +1,5 @@
 <template>
   <header id="smart-header" class="container-fluid header header-bordered">
-    <!--<div class="modals">-->
-    <!--<login-modal :id="'add-login'" :authenticated.sync="isAuthenticated">Чтобы добавить магазин, необходимо-->
-    <!--зарегистрироваться в 2 клика-->
-    <!--</login-modal>-->
-    <!--<login-modal :id="'signin-login'" :authenticated.sync="isAuthenticated">Чтобы войти или зарегистрироваться,-->
-    <!--необходимо выбрать соц. сеть-->
-    <!--</login-modal>-->
-    <!--</div>-->
-    <!--<shop :newShop.sync="newShop" ref="shop"></shop>-->
     <div class="row justify-content-end align-items-center" :class="{'d-lg-flex':menuExist, 'd-none':menuExist}">
 
       <div class="col-6 offset-lg-1 col-lg-3 col-xl-3 btn-container">
@@ -38,6 +29,16 @@
       </div>
 
     </div>
+
+    <div class="modals">
+      <login-modal :id="'add-login'" :authenticated.sync="isAuthenticated">Чтобы добавить магазин, необходимо
+        зарегистрироваться в 2 клика
+      </login-modal>
+      <login-modal :id="'signin-login'" :authenticated.sync="isAuthenticated">Чтобы войти или зарегистрироваться,
+        необходимо выбрать соц. сеть
+      </login-modal>
+    </div>
+    <shop :newShop.sync="newShop" ref="shop"></shop>
 
   </header>
 </template>
@@ -81,7 +82,6 @@
 
   #smart-header
     height: 150px
-    //height: 5.55555556%
     width: 100%
 
     > div:first-child, > div:nth-child(2)
@@ -91,6 +91,7 @@
       display: flex
       align-items: center
       justify-content: center
+      height: 50px
 
       cursor: pointer
 
@@ -102,7 +103,7 @@
       margin:
         left: 38px
         right: 38px
-      //height: 60px
+      height: 50px
       font-size: 1.5vmax
       border: none
       @include media-breakpoint-only(lg)
@@ -119,7 +120,7 @@
         background-color: transparent
         color: black
         max-width: 340px
-        @include media-breakpoint-only(md)
+        @include media-breakpoint-down(md)
           color: white
 
 </style>

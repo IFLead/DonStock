@@ -189,6 +189,7 @@
             color: white
             padding-left: 38px
             padding-right: 58px
+
             @include media-breakpoint-down(xs)
               padding-left: 25px
               padding-right: 25px
@@ -304,11 +305,15 @@
                 filter: grayscale(0%)
                 opacity: 1
     div.new
-      padding-bottom: 40px
+      margin-top: 50px
+      padding-bottom: 50px
 
       input
-        height: 40px
+        height: 50px
         font-size: 1.5vmax
-        width: 230px
+        padding:
+          left: 38px
+          right: 38px
+
 </style>
 

@@ -9,12 +9,12 @@
 
         <aside class="col-lg-3 left-panel">
 
-          <div @click="swithPanel(1)" class="left-panel-profile">
+          <div @click="switchPanel(1)" class="left-panel-profile">
             <img src="../../src/assets/user.png" width="50" height="50">
             <button class="button button_left-panel">Профиль</button>
           </div>
 
-          <div @click="swithPanel(2)" class="left-panel-my-shops">
+          <div @click="switchPanel(2)" class="left-panel-my-shops">
             <img src="../../src/assets/internet-store.png" width="50" height="50">
             <button class="button button_left-panel">Мои магазины</button>
           </div>
@@ -73,7 +73,7 @@
       <div class="menu-area-buttons-wrapper">
 
         <div class="menu-area-main">
-          <router-link to="/">
+          <router-link class="router-link" to="/">
             <img src="../../src/assets/home.svg" width="50" height="50">
             <button class="button button_left-panel button_left-panel_mobile">Главная</button>
           </router-link>
@@ -316,6 +316,7 @@
       position: absolute
       top: 50px
       right: 50px
+      cursor: pointer
 
   .menu-area
     width: 100%
@@ -388,6 +389,10 @@
   .main-container
     height: calc(100% - 150px)
 
+  .router-link
+    display: flex
+    align-items: center
 
-</style scoped>
+
+</style>
 

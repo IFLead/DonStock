@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 // import VueAxios from 'vue-axios'
 // import axios from 'axios'
-import store from '../store'
+// import store from '../store'
 
 Vue.use(Router)
 
@@ -24,11 +24,11 @@ export default new Router({
     {
       path: '/account',
       name: 'Account',
-      component: Account,
-      beforeEnter: (to, from, next) => {
-        store.dispatch('checkRedirect', {redirect: next})
-        // authMixin.methods.checkToken('google', next)
-      }
+      component: Account
+      // beforeEnter: (to, from, next) => {
+      //   store.dispatch('checkRedirect', {redirect: next})
+      //   // authMixin.methods.checkToken('google', next)
+      // }
     }
   ]
 })
