@@ -80,7 +80,7 @@
         </div>
 
 
-        <div @click="swithPanel(1)" class="menu-area-profile">
+        <div @click="switchPanel(1)" class="menu-area-profile">
 
           <img src="../../src/assets/user.png" width="50" height="50">
           <button class="button button_left-panel button_left-panel_mobile">Профиль</button>
@@ -88,7 +88,7 @@
         </div>
 
 
-        <div @click="swithPanel(2)" class="menu-area-my-shops">
+        <div @click="switchPanel(2)" class="menu-area-my-shops">
 
           <img src="../../src/assets/internet-store.png" width="50" height="50">
           <button class="button button_left-panel button_left-panel_mobile">Мои магазины</button>
@@ -168,7 +168,7 @@
       logout () {
         this.$store.dispatch('logout')
       },
-      swithPanel (index) {
+      switchPanel (index) {
         this.panelIndex = index
         this.menuOpened = false
       }
