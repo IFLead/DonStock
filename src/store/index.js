@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import authentication from './modules/authentication'
 import categories from './modules/categories'
 import shops from './modules/shops'
+import newShop from './modules/newShop'
 import online from './modules/online'
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ let store = new Vuex.Store({
     shops,
     categories,
     authentication,
-    online
+    online,
+    newShop
   },
   strict: debug,
   plugins: debug ? [] : []

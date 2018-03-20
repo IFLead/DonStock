@@ -49,6 +49,7 @@
       },
       finish () {
         if (this.category !== -1) {
+          this.$store.commit('setCategories', this.catSelected.map(item => (item.id)))
           this.$emit('finish', this.category)
         }
       },

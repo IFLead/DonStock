@@ -26,6 +26,7 @@ const state = {
 // getters
 const getters = {
   allShops: state => state.shops,
+  idsShops: state => state.shops.map(item => item.id),
   sortedShops (state) {
     return [...state.shops].sort((a, b) => b.rating - a.rating)
   }
@@ -54,7 +55,12 @@ const mutations = {
 // actions
 const actions = {
   loadShops (context) {
-    Vue.axios.get('api/shops/?format=json').then((response) => {
+    Vue.axios.get('api/shops/', {
+      params: {
+        format: 'json',
+        token: context.getters.token
+      }
+    }).then((response) => {
       Vue.$storage.set('shops', response.data)
       context.commit('appendShops', response.data)
     }, () => {
@@ -63,7 +69,10 @@ const actions = {
     })
   },
   moreShops (context) {
-    Vue.axios.get('api/shops/?format=json').then(response => {
+    Vue.axios.post('api/append_shops/', {
+      ids: context.getters.idsShops,
+      token: context.getters.token
+    }).then(response => {
       Vue.$storage.set('shops', Vue.$storage.get('shops').push(...response.data))
       context.commit('appendShops', response.data)
     }, response => {
@@ -95,13 +104,13 @@ const actions = {
 
     context.commit('calcRating', shop.id)
 
-    Vue.axios.post('api/votes/', {shop: shop.id, action: true}).then((response) => {
+    Vue.axios.post('api/votes/', {shop: shop.id, action: true, token: context.getters.token}).then((response) => {
       context.commit('setVotes', {
         id: shop.id,
-        likes: response.likes,
-        dislikes: response.dislikes,
-        rating: response.rating,
-        vote_status: response.vote_status
+        likes: response.data.likes,
+        dislikes: response.data.dislikes,
+        rating: response.data.rating,
+        voteStatus: response.data.vote_status
       })
     }, (response) => {
     })
@@ -132,13 +141,13 @@ const actions = {
 
     context.commit('calcRating', shop.id)
 
-    Vue.axios.post('api/votes/', {shop: shop.id, action: false}).then((response) => {
+    Vue.axios.post('api/votes/', {shop: shop.id, action: false, token: context.getters.token}).then((response) => {
       context.commit('setVotes', {
         id: shop.id,
-        likes: response.likes,
-        dislikes: response.dislikes,
-        rating: response.rating,
-        vote_status: response.vote_status
+        likes: response.data.likes,
+        dislikes: response.data.dislikes,
+        rating: response.data.rating,
+        voteStatus: response.data.vote_status
       })
     }, (response) => {
     })

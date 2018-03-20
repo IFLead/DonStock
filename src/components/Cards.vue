@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="row justify-content-center new">
-      <input type="button" value="Показать еще" class="green-btn" v-on:click="loadShops()">
+      <input type="button" value="Показать еще" class="green-btn" v-on:click="moreShops">
     </div>
   </div>
 </template>
@@ -99,7 +99,8 @@
     methods: {
       ...mapActions([
         'like',
-        'dislike'
+        'dislike',
+        'moreShops'
       ]),
       isFiltered (categories) {
         const selectedCategories = this.selectedCategories.map(value => value.id)

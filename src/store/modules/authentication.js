@@ -62,7 +62,8 @@ const getters = {
   username: state => state.username,
   firstName: state => state.firstName,
   lastName: state => state.lastName,
-  email: state => state.email
+  email: state => state.email,
+  token: state => vueAuth.getToken()
 }
 
 // mutations
@@ -146,6 +147,7 @@ const actions = {
       context.commit('setFirstName', undefined)
       context.commit('setLastName', undefined)
       context.commit('setEmail', undefined)
+      localStorage.removeItem('vue-authenticate.vueauth_token')
       context.dispatch('checkAuthenticated')
     })
     router.push('/')

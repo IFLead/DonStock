@@ -1,6 +1,6 @@
 {
-  "name": "DonStock",
-  "short_name": "DonStock",
+  "name": "Donline",
+  "short_name": "Donline",
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",
@@ -11,10 +11,16 @@
       "src": "/static/img/icons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/static/img/icons/android-chrome-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
     }
   ],
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1DB954"
 }

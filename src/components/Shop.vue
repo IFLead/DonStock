@@ -11,17 +11,6 @@
   import CategoryModal from './modals/CategoryModal'
   import InformationModal from './modals/InformationModal'
 
-  class Shop {
-    constructor (name, description, linkOne, linkTwo, linkThree) {
-      this.name = name
-      this.description = description
-      this.linkOne = linkOne
-      this.linkTwo = linkTwo
-      this.linkThree = linkThree
-      this.category = -1
-    }
-  }
-
   export default {
     components: {
       CategoryModal,
@@ -38,7 +27,11 @@
         const {
           name, description, linkOne, linkTwo, linkThree
         } = data
-        this.newShop = new Shop(name, description, linkOne, linkTwo, linkThree)
+        this.$store.commit('setName', name)
+        this.$store.commit('setDescription', description)
+        this.$store.commit('setLinkOne', linkOne)
+        this.$store.commit('setLinkTwo', linkTwo)
+        this.$store.commit('setLinkThree', linkThree)
         this.$refs.information_modal.$refs.information_modal.hide()
         this.$refs.category_modal.$refs.category_modal.show()
       },
@@ -47,7 +40,8 @@
         this.$refs.information_modal.$refs.information_modal.show()
       },
       finish (category) {
-        this.newShop.category = category
+        this.$store.dispatch('createShop')
+        this.$refs.category_modal.$refs.category_modal.hide()
       }
     }
   }
